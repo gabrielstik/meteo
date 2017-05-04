@@ -1,1 +1,28 @@
 @import 'variables';
+
+body {
+  background-color: $color-clear;
+  color: white;
+
+  .maxmin {
+    width: 60%;
+    margin: auto;
+
+    .max-temp, .min-temp {
+      display: inline-block;
+      width: 50%;
+      text-align: center;
+      font-family: $font-main;
+      font-weight: 100;
+      font-size: 100px;
+      padding-top: 200px;
+    }
+
+    .city {
+      text-align: center;
+      font-family: $font-main;
+      font-weight: 300;
+      font-size: 36px;
+    }
+  }
+}
