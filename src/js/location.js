@@ -16,9 +16,8 @@ watchID = navigator.geolocation.watchPosition(function(location) {
   form.submit();
 });
 
-setTimeout(stop,2000);
-
-function stop() {
-  console.log("stop");
-  navigator.geolocation.clearWatch(watchID);
-}
+// setTimeout(stop,2000);
+//
+// function stop() {
+//   navigator.geolocation.clearWatch(watchID);
+// }
