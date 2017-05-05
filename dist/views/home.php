@@ -1,23 +1,30 @@
 <?php
-$zip = '62000';
-$city = 'Arras';
+  // YAHOO //
+  $apikey = '&APPID=08da33fe0bd44b99b35ef3eabc42fddd';
+  $queryurl = 'http://api.openweathermap.org/data/2.5/weather?';
 
-$data = file_get_contents('http://www.meteofrance.com/previsions-meteo-france/'.strtolower($city).'/'.$zip);
+  $woeid = '3020392';
 
-$from_maxtemp = '<span class="max-temp">';
-$to_maxtemp = ' Maximale</span>';
-$from_mintemp = '<span class="min-temp">';
-$to_mintemp = ' Minimale</span>';
-$from_city = '<h1>Meteo ';
-$to_city = ' (';
+  $query = 'q=ecully';
+  $q = $queryurl.$query.$apikey;
+  echo $q;
 
-function getData($data,$from,$to) {
-  $sub = substr($data, strpos($data,$from)+strlen($from),strlen($data));
-  return substr($sub,0,strpos($sub,$to));
-}
+  ?></br></br><?php
+
+  echo file_get_contents($q);
+
+  ?></br></br><?php
+
+  $json = json_decode(file_get_contents($q));
+  print_r($json);
+
+  ?></br></br><?php
+
+  $temp = floatval($json->main->temp)-273.15;
+  $temp_round = 0;
+
 ?>
 <div class="maxmin">
-  <div class="max-temp"><?php echo getData($data,$from_maxtemp,$to_maxtemp) ?></div><!--
-  --><div class="min-temp"><?php echo getData($data,$from_mintemp,$to_mintemp) ?></div>
-  <div class="city"><?php echo getData($data,$from_city,$to_city) ?></div>
+  <div class="temp"><?php echo round($temp,$temp_round)."°C"; ?></div>
+  <div class="city"><?php  ?></div>
 </div>

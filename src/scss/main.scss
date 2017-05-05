@@ -8,9 +8,7 @@ body {
     width: 60%;
     margin: auto;
 
-    .max-temp, .min-temp {
-      display: inline-block;
-      width: 50%;
+    .temp {
       text-align: center;
       font-family: $font-main;
       font-weight: 100;
