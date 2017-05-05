@@ -1,13 +1,8 @@
 <?php
-  // API data//
-  $apikey = '08da33fe0bd44b99b35ef3eabc42fddd';
-  $queryurl = 'http://api.openweathermap.org/data/2.5/';
-  $lang = 'fr';
-
   include 'views/actions/display.php';
 ?>
 <div class="weather">
-  <form class="city-form" action="#" method="post">
+  <form class="city-form" method="post">
     <input autocomplete="off" type="text" id="city" name="city" class="city" value="<?php echo $place; ?>"></input>
     <input type="submit" id="subcity" name="subcity" class="subcity"></input>
   </form>
@@ -46,3 +41,7 @@
     </ul>
   </div>
 </div>
+<form method="post" id="setLocation">
+  <input type="hidden" name="setLat" id="setLat" class="setLat" value=""></input>
+  <input type="hidden" name="setLon" id="setLon" class="setLon" value=""></input>
+</form>
