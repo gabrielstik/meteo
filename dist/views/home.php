@@ -14,3 +14,24 @@
   <div class="temp"><?php echo round($temp,$temp_round)."°C"; ?></div>
   <div class="how"><?php echo $how; ?></div>
 </div>
+<div class="forecast">
+  <div class="forecast-space">
+    <ul class="forecast-list">
+      <?php
+        for ($date = 0; $date < 20; $date++) { ?>
+          <li class="forecast-date">
+            <div class="date">
+              <?php
+                echo ltrim(substr($json_forecast->list[$date]->dt_txt,8 , -9),0); ?>
+            </div>
+            <div class="time">
+              <?php
+                echo substr($json_forecast->list[$date]->dt_txt,10 ,-3);
+              ?>
+            </div>
+          </li>
+        <?php }
+      ?>
+    </ul>
+  </div>
+</div>

@@ -19,7 +19,5 @@
     $query = 'q='.$city.'&lang='.$lang;
     $q_forecast = $queryurl.$data.$query.'&APPID='.$apikey;
     $json_forecast = json_decode(file_get_contents($q_forecast));
-
-    echo file_get_contents($q_forecast);
   }
 ?>

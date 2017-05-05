@@ -48,4 +48,27 @@ body {
       }
     }
   }
+
+  .forecast {
+    width: 60%;
+    margin: auto;
+    height: 100px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: $color-font-dark;
+
+    .forecast-space {
+      width: 3000px;
+
+      .forecast-date {
+        display: inline-block;
+        width: calc(5% - 4px);
+
+        .date, .time {
+          font-family: 'Lato';
+          text-align: center;
+        }
+      }
+    }
+  }
 }
