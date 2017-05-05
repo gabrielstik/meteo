@@ -18,15 +18,26 @@
   <div class="forecast-space">
     <ul class="forecast-list">
       <?php
-        for ($date = 0; $date < 20; $date++) { ?>
+        for ($date = 0; $date < 40; $date++) { ?>
           <li class="forecast-date">
             <div class="date">
               <?php
-                echo ltrim(substr($json_forecast->list[$date]->dt_txt,8 , -9),0); ?>
+                if ($lang == fr) {
+                  echo ltrim(substr($json_forecast->list[$date]->dt_txt,8 , -9),0).'/'.ltrim(substr($json_forecast->list[$date]->dt_txt,5 , -12),0);
+                }
+                else {
+                  echo ltrim(substr($json_forecast->list[$date]->dt_txt,5 , -12),0).'/'.ltrim(substr($json_forecast->list[$date]->dt_txt,8 , -9),0);
+                }
+              ?>
             </div>
             <div class="time">
               <?php
                 echo substr($json_forecast->list[$date]->dt_txt,10 ,-3);
+              ?>
+            </div>
+            <div class="temp">
+              <?php
+                echo round(floatval($json_forecast->list[$date]->main->temp)-273.15,$temp_round).'°C';
               ?>
             </div>
           </li>

@@ -58,15 +58,22 @@ body {
     color: $color-font-dark;
 
     .forecast-space {
-      width: 3000px;
+      width: 6000px;
 
       .forecast-date {
         display: inline-block;
-        width: calc(5% - 4px);
+        width: calc(2.5% - 4px);
 
         .date, .time {
           font-family: 'Lato';
           text-align: center;
+        }
+
+        .temp {
+          font-family: 'Lato';
+          text-align: center;
+          font-size: 36px;
+          font-weight: 100px;
         }
       }
     }
