@@ -1,27 +1,16 @@
 <?php
   // API data//
   $apikey = '08da33fe0bd44b99b35ef3eabc42fddd';
-  $queryurl = 'http://api.openweathermap.org/data/2.5/weather?';
+  $queryurl = 'http://api.openweathermap.org/data/2.5/';
   $lang = 'fr';
-  $city = 'ecully';
 
-  // Current data
-
-  $query = 'q='.$city.'&lang='.$lang;
-  $q = $queryurl.$query.'&APPID='.$apikey;
-
-  echo file_get_contents($q);
-
-  $json = json_decode(file_get_contents($q));
-
-  $place = $json->name;
-  $temp = floatval($json->main->temp)-273.15;
-  $temp_round = 0;
-  $how = $json->weather[0]->description;
-
+  include 'views/actions/display.php';
 ?>
 <div class="weather">
-  <div class="city"><?php echo $place; ?></div>
+  <form class="city-form" action="#" method="post">
+    <input autocomplete="off" type="text" id="city" name="city" class="city" value="<?php echo $place; ?>"></input>
+    <input type="submit" id="subcity" name="subcity" class="subcity"></input>
+  </form>
   <div class="temp"><?php echo round($temp,$temp_round)."°C"; ?></div>
   <div class="how"><?php echo $how; ?></div>
 </div>

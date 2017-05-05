@@ -1,8 +1,11 @@
 @import 'variables';
 
 body {
-  background-color: $color-clear;
-  color: white;
+  background: linear-gradient($color-clear-a, $color-clear-b);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  color: $color-font-main;
 
   .weather {
     width: 60%;
@@ -16,11 +19,21 @@ body {
       margin-top: 100px;
     }
 
-    .city {
-      text-align: center;
-      font-family: $font-main;
-      font-weight: 300;
-      font-size: 50px;
+    .city-form {
+
+      .city {
+        display: inline-block;
+        width: 400px;
+        margin-left: calc(50% - 200px);
+        text-align: center;
+        font-family: $font-main;
+        font-weight: 300;
+        font-size: 50px;
+      }
+
+      .subcity {
+        visibility: hidden;
+      }
     }
 
     .how {
