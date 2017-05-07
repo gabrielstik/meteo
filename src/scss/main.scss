@@ -66,12 +66,12 @@ body {
         width: calc(2.5% - 4px);
 
         .date, .time {
-          font-family: 'Lato';
+          font-family: $font-main;
           text-align: center;
         }
 
         .temp {
-          font-family: 'Lato';
+          font-family: $font-main;
           text-align: center;
           font-size: 36px;
           font-weight: 100px;

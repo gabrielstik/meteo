@@ -1,5 +1,6 @@
 <script src="assets/js/position.js"></script>
 <?php
+  $location = false;
   // Meteo API data//
   $apikey = '08da33fe0bd44b99b35ef3eabc42fddd';
   $queryurl = 'http://api.openweathermap.org/data/2.5/';
@@ -13,6 +14,7 @@
     $q_current = $queryurl.$data.$query.'&APPID='.$apikey;
     $json_current = json_decode(file_get_contents($q_current));
 
+    $location = false;
     $place = $json_current->name;
     $temp = floatval($json_current->main->temp)-273.15;
     $temp_round = 0;
@@ -27,12 +29,12 @@
   else {
     // INIT WITH CURRENT LOCATION //
     // WEATHER QUERY //
-    echo $_POST['wantLocation'];
     $data = 'weather?';
     $query = 'lat='.$_POST['setLat'].'&lon='.$_POST['setLon'].'&lang='.$lang;
     $q_current = $queryurl.$data.$query.'&APPID='.$apikey;
     $json_current = json_decode(file_get_contents($q_current));
 
+    $location = true;
     $place = $json_current->name;
     $temp = floatval($json_current->main->temp)-273.15;
     $temp_round = 0;

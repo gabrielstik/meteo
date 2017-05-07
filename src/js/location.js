@@ -3,11 +3,6 @@ var form = document.getElementById('setLocation');
 var lat = document.querySelector('.setLat');
 var lon = document.querySelector('.setLon');
 
-var supports = {
-  geolocation: !!navigator.geolocation
-};
-
-
 watchID = navigator.geolocation.watchPosition(function(location) {
   posX = location.coords.latitude;
   posY = location.coords.longitude;
@@ -16,8 +11,8 @@ watchID = navigator.geolocation.watchPosition(function(location) {
   form.submit();
 });
 
-// setTimeout(stop,2000);
-//
-// function stop() {
-//   navigator.geolocation.clearWatch(watchID);
-// }
+setTimeout(stop,5000);
+
+function stop() {
+  navigator.geolocation.clearWatch(watchID);
+}
