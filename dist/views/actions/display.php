@@ -32,6 +32,15 @@ switch ($how) {
   case 'brume':
     $howsentence = 'Des filets de <span class="how">brume</span> se profilent à';
   break;
+  case 'légères pluies':
+    $howsentence = 'Quelques <span class="how">gouttes d\'eaux</span> tombent sur';
+  break;
+  case 'pluies modérées':
+    $howsentence = 'La <span class="how">pluie </span> tombe sur';
+  break;
+  case 'petites averses':
+    $howsentence = 'De <span class="how">petites averses</span> s\'abbatent sur';
+  break;
   case 'peu nuageux':
     $howsentence = 'Le ciel est parsemé de <span class="how">nuages</span> à';
   break;
