@@ -1,18 +1,19 @@
 // GET POSITION //
-var form = document.getElementById('setLocation');
-var lat = document.querySelector('.setLat');
-var lon = document.querySelector('.setLon');
 
-watchID = navigator.geolocation.watchPosition(function(location) {
-  posX = location.coords.latitude;
-  posY = location.coords.longitude;
-  lat.value=posX;
-  lon.value=posY;
-  form.submit();
-});
+// var form = document.getElementById('setLocation');
+// var lat = document.querySelector('.setLat');
+// var lon = document.querySelector('.setLon');
 
-setTimeout(stop,5000);
+// watchID = navigator.geolocation.watchPosition(function(location) {
+//   posX = location.coords.latitude;
+//   posY = location.coords.longitude;
+//   lat.value=posX;
+//   lon.value=posY;
+//   form.submit();
+// });
 
-function stop() {
-  navigator.geolocation.clearWatch(watchID);
-}
+// setTimeout(stop,5000);
+
+// function stop() {
+//   navigator.geolocation.clearWatch(watchID);
+// }

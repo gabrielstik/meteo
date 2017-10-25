@@ -2,49 +2,16 @@
   include 'views/actions/display.php';
 ?>
 <div class="weather">
+  <?php echo $howsentence; ?></span>
   <form class="city-form" method="post">
     <input autocomplete="off" type="text" id="city" name="city" class="city" value="<?php echo $place; ?>"></input>
     <input type="submit" id="subcity" name="subcity" class="subcity"></input>
-  </form>
+  </form><br/>
+  <?php //echo round($temp,$temp_round)."°C"; ?>
   <?php if (!empty($_POST['setLat']) || !empty($_POST['city'])) { ?>
-    <div class="temp"><?php echo round($temp,$temp_round)."°C"; ?></div>
-    <div class="how"><?php echo $how; ?></div>
   <?php } ?>
 </div>
-<div class="forecast">
-  <div class="forecast-space">
-    <ul class="forecast-list">
-      <?php
-        if (!empty($_POST['setLat']) || !empty($_POST['city'])) {
-          for ($date = 0; $date < 40; $date++) { ?>
-            <li class="forecast-date">
-              <div class="date">
-                <?php
-                  if ($lang == fr) {
-                    echo ltrim(substr($json_forecast->list[$date]->dt_txt,8 , -9),0).'/'.ltrim(substr($json_forecast->list[$date]->dt_txt,5 , -12),0);
-                  }
-                  else {
-                    echo ltrim(substr($json_forecast->list[$date]->dt_txt,5 , -12),0).'/'.ltrim(substr($json_forecast->list[$date]->dt_txt,8 , -9),0);
-                  }
-                ?>
-              </div>
-              <div class="time">
-                <?php
-                  echo substr($json_forecast->list[$date]->dt_txt,10 ,-3);
-                ?>
-              </div>
-              <div class="temp">
-                <?php
-                  echo round(floatval($json_forecast->list[$date]->main->temp)-273.15,$temp_round).'°C';
-                ?>
-              </div>
-            </li>
-          <?php }
-        }
-      ?>
-    </ul>
-  </div>
-</div>
+
 <form method="post" id="setLocation">
   <input type="hidden" name="setLat" id="setLat" class="setLat" value=""></input>
   <input type="hidden" name="setLon" id="setLon" class="setLon" value=""></input>
