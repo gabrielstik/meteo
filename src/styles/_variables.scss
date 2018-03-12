@@ -1,0 +1,13 @@
+:root {
+	--background: #111111;
+	--main: red;
+	--mainShadow: rgba(255, 0, 0, .5);
+	--grey: lightgrey;
+	--white: white;
+	--black: black;
+	--blackShadow: rgba(0, 0, 0, .2);
+
+	--playerHeight: 40px;
+
+}
+$mobile: "only screen and (max-width : 640px)";
