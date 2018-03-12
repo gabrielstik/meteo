@@ -1,11 +1,32 @@
 html, body {
-	overflow: hidden;
+	font-family: 'Avenir Next';
 }
 
-body {
-	position: relative;
-	height: 100vh;
-	width: 100vw;
-	font-family: 'Avenir Next';
-	font-weight: 700;
+form {
+
+	label {
+		font-size: 36px;
+		font-weight: 700;
+	}
+
+	input {
+		margin-left: 10px;
+		font-size: 36px;
+		font-weight: 700;
+		border: none;
+		outline: none;
+
+		&[type=text] {
+			color: blue;
+		}
+	}
+}
+
+.item {
+			
+	.label {
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 }
