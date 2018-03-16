@@ -5,15 +5,20 @@ $unit = 'metric';
 $current_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
 $forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
 
-$path = './cache/'.md5($forecast_url);
-if (!is_dir('./cache')) mkdir('./cache');
-if (file_exists($path) && time() - filemtime($path) < 60) {
-	$data = json_decode(file_get_contents($path));
+function get_data($url) {
+	$path = './cache/'.md5($url);
+	if (!is_dir('./cache')) mkdir('./cache');
+	if (file_exists($path) && time() - filemtime($path) < 60) {
+		$data = json_decode(file_get_contents($path));
+	}
+	else {
+		$data = json_decode(file_get_contents($url));
+		file_put_contents('./cache/'.md5($url), json_encode($data));
+	}
+	return $data;
 }
-else {
-	$data = json_decode(file_get_contents($forecast_url));
-	file_put_contents('./cache/'.md5($forecast_url), json_encode($data));
-}
+$data = get_data($forecast_url);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +44,8 @@ else {
 	</header>
 	<section class="meteo grid-12">
 		<h1><?= $city ?><span class="region">Ille-et-Vilaine, France</span></h1>
+		<div class="current col-5 box-shadow">
+		</div>
 		<?php foreach($data->list as $forecast) { ?>
 			<div class="day">
 				<h2><?= date(' d/m à H', $forecast->dt).'h' ?></h2>

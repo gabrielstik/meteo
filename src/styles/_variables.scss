@@ -1,4 +1,6 @@
 :root {
+	--white: #ffffff;
+	--background: #fafafa;
 	--main: #418fd0;
 	--second: #407eb2;
 	--second-hover: #5084ad;
@@ -6,4 +8,5 @@
 	--medium: #9b9b9b;
 	--dark: #323232;
 }
+
 $mobile: "only screen and (max-width : 640px)";

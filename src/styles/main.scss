@@ -1,6 +1,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	background: var(--background);
 	font-family: 'Avenir Next';
 }
 
@@ -71,5 +72,10 @@ section.meteo {
 		font-size: 18px;
 		font-weight: 300;
 		color: var(--medium);
+	}
+
+	.current {
+		height: 250px;
+		background: var(--white);
 	}
 }
