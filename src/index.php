@@ -48,7 +48,22 @@ $forecast_data = get_data($forecast_url);
 		<h1><?= $city ?><span class="region">Ille-et-Vilaine, France</span></h1>
 		<div class="current col-5 box-shadow">
 			<h2>Actuellement</h2>
-			<?= round($weather_data->main->temp) ?>
+			<div class="temp">
+				<?= round($weather_data->main->temp) ?>
+				<div class="unit">°C</div>
+			</div>
+			<div class="temp-values">
+				<div class="labels">
+					<div class="min">Minimum</div>
+					<div class="max">Maximum</div>
+					<div class="hum">Humidité</div>
+				</div>
+				<div class="values">
+					<div class="min"><?= round($weather_data->main->temp_min) ?><span class="unit">°C</span></div>
+					<div class="max"><?= round($weather_data->main->temp_max) ?><span class="unit">°C</span></div>
+					<div class="feels"><?= round($weather_data->main->humidity) ?>%</div>
+				</div>
+			</div>
 		</div>
 		<?php foreach($forecast_data->list as $forecast) { ?>
 			<div class="day">

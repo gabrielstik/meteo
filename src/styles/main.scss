@@ -84,5 +84,40 @@ section.meteo {
 	.current {
 		height: 250px;
 		background: var(--white);
+
+		.temp, .temp-values {
+			display: inline-block;
+		}
+
+		.temp {
+			margin-right: 50px;
+			display: inline-block;
+			position: relative;
+			font-size: 64px;
+			font-weight: 500;
+			color: var(--dark);
+
+			.unit {
+				position: absolute;
+				top: 10px;
+				right: -25px;
+				font-size: 18px;
+			}
+		}
+
+		.temp-values {
+			font-size: 14px;
+			line-height: 21px;
+
+			.labels, .values {
+				display: inline-block;
+				margin: 5px;
+			}
+
+			.labels {
+				font-weight: 700;
+				text-transform: uppercase;
+			}
+		}
 	}
 }
