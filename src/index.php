@@ -2,7 +2,7 @@
 define('OPEN_WEATHER_APP_ID', '08da33fe0bd44b99b35ef3eabc42fddd');
 $city = isset($_GET['city']) ? $_GET['city'] : 'Paris';
 $unit = 'metric';
-$current_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
+$weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
 $forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
 
 function get_data($url) {
@@ -17,7 +17,9 @@ function get_data($url) {
 	}
 	return $data;
 }
-$data = get_data($forecast_url);
+
+$weather_data = get_data($weather_url);
+$forecast_data = get_data($forecast_url);
 
 ?>
 <!DOCTYPE html>
@@ -45,8 +47,10 @@ $data = get_data($forecast_url);
 	<section class="meteo grid-12">
 		<h1><?= $city ?><span class="region">Ille-et-Vilaine, France</span></h1>
 		<div class="current col-5 box-shadow">
+			<h2>Actuellement</h2>
+			<?= round($weather_data->main->temp) ?>
 		</div>
-		<?php foreach($data->list as $forecast) { ?>
+		<?php foreach($forecast_data->list as $forecast) { ?>
 			<div class="day">
 				<h2><?= date(' d/m à H', $forecast->dt).'h' ?></h2>
 				<div class="item">
