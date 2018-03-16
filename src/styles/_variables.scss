@@ -1,13 +1,9 @@
 :root {
-	--background: #111111;
-	--main: red;
-	--mainShadow: rgba(255, 0, 0, .5);
-	--grey: lightgrey;
-	--white: white;
-	--black: black;
-	--blackShadow: rgba(0, 0, 0, .2);
-
-	--playerHeight: 40px;
-
+	--main: #418fd0;
+	--second: #407eb2;
+	--second-hover: #5084ad;
+	--light: #eeeeee;
+	--medium: #9b9b9b;
+	--dark: #323232;
 }
 $mobile: "only screen and (max-width : 640px)";
