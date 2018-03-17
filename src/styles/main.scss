@@ -12,6 +12,11 @@ header {
 	background: var(--main);
 }
 
+.auto-960 {
+  width: 960px;
+	margin: auto;
+}
+
 form.input-place {
 	position: relative;
 
@@ -61,6 +66,7 @@ form.input-place {
 }
 
 section.meteo {
+  font-size: 0;
 	
 	h1 {
 		font-size: 36px;
@@ -68,11 +74,24 @@ section.meteo {
 	}
 
 	h2 {
-		padding: 15px 20px;
 		font-size: 18px;
 		text-transform: uppercase;
 		color: var(--dark);
-	}
+  }
+
+  h3 {
+    font-size: 12px;
+		text-transform: uppercase;
+		color: var(--dark);
+  }
+  
+  .block {
+    padding: 5px 20px;
+    display: inline-block;
+    vertical-align: top;
+    background: var(--white);
+    box-shadow: 0 0 10px rgba(0,0,0,.05);
+  }
 
 	.region {
 		font-size: 18px;
@@ -81,8 +100,9 @@ section.meteo {
 	}
 
 	.current {
-		height: 250px;
-		background: var(--white);
+    width: 380px;
+		height: 210px;
+    background: var(--white);
 
 		.temp, .temp-values {
 			display: inline-block;
@@ -118,5 +138,21 @@ section.meteo {
 				text-transform: uppercase;
 			}
 		}
-	}
+  }
+  
+  .day-forecast {
+    width: 480px;
+    margin-left: 20px;
+  }
+
+  .week-forecast {
+    margin-top: 20px;
+    width: 100%;
+
+    .day {
+      width: 70px;
+      margin: 0 5px;
+      display: inline-block;
+    }
+  }
 }
