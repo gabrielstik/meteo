@@ -32,12 +32,12 @@ form.input-place {
 		}
 
 		&.place {
-			width: 180px;
+			width: 230px;
 			padding: 0 10px 0 30px;
 		}
 
 		&.locate {
-			width: 30px;
+      width: 30px;
 			font-size: 14px;
 			cursor: pointer;
 
@@ -75,7 +75,6 @@ section.meteo {
 	}
 
 	.region {
-		margin-left: 10px;
 		font-size: 18px;
 		font-weight: 300;
 		color: var(--medium);

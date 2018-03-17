@@ -4,9 +4,12 @@ define('GOOGLE_API_KEY', 'AIzaSyA412LU3h-USYKW_U-_al9fOEeZpsjTiic');
 
 function geocode($place) {
 	$geocoder_data = json_decode(file_get_contents(
-    'https://maps.googleapis.com/maps/api/geocode/json?key='.GOOGLE_API_KEY.'&language=fr&address='.$place
+    'https://maps.googleapis.com/maps/api/geocode/json?key='.GOOGLE_API_KEY.'&language=fr&address='.str_replace(' ', '-', $place)
   ));
   $place_data = new stdClass();
+  $place_data->city = $geocoder_data->results[0]->address_components[0]->long_name;
+  $place_data->dept = $geocoder_data->results[0]->address_components[1]->long_name;
+  $place_data->country = $geocoder_data->results[0]->address_components[3]->long_name;
   $place_data->lat = $geocoder_data->results[0]->geometry->location->lat;
   $place_data->lng = $geocoder_data->results[0]->geometry->location->lng;
   return $place_data;
@@ -14,8 +17,8 @@ function geocode($place) {
 
 $place_data = isset($_GET['place']) ? geocode($_GET['place']) : geocode('Paris');
 $unit = 'metric';
-$weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$place_data->lat.'&long='.$place_data->lng.'&units='.$unit;
-$forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$place_data->lat.'&long='.$place_data->lng.'&units='.$unit;
+$weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$place_data->lat.'&lon='.$place_data->lng.'&units='.$unit;
+$forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$place_data->lat.'&lon='.$place_data->lng.'&units='.$unit;
 
 function get_data($url) {
 	$path = './cache/'.md5($url);
@@ -40,6 +43,7 @@ $forecast_data = get_data($forecast_url);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="assets/css/reset.min.css">
 	<link rel="stylesheet" href="assets/css/style.min.css">
 	<link rel="stylesheet" href="assets/lib/font-awesome-4.7.0/css/font-awesome.min.css">
 	<title>Météo</title>
@@ -57,7 +61,10 @@ $forecast_data = get_data($forecast_url);
 		</form>
 	</header>
 	<section class="meteo grid-12">
-		<h1><?= $city ?><span class="region">Ille-et-Vilaine, France</span></h1>
+		<h1>
+      <?= $place_data->city ?>
+      <span class="region"><?= $place_data->dept ?>, <?= $place_data->country ?></span>
+    </h1>
 		<div class="current col-5 box-shadow">
 			<h2>Actuellement</h2>
 			<div class="temp">
