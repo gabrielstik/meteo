@@ -1,9 +1,21 @@
 <?
-define('OPEN_WEATHER_APP_ID', '08da33fe0bd44b99b35ef3eabc42fddd');
-$city = isset($_GET['city']) ? $_GET['city'] : 'Paris';
+define('OPEN_WEATHER_API_KEY', '08da33fe0bd44b99b35ef3eabc42fddd');
+define('GOOGLE_API_KEY', 'AIzaSyA412LU3h-USYKW_U-_al9fOEeZpsjTiic');
+
+function geocode($place) {
+	$geocoder_data = json_decode(file_get_contents(
+    'https://maps.googleapis.com/maps/api/geocode/json?key='.GOOGLE_API_KEY.'&language=fr&address='.$place
+  ));
+  $place_data = new stdClass();
+  $place_data->lat = $geocoder_data->results[0]->geometry->location->lat;
+  $place_data->lng = $geocoder_data->results[0]->geometry->location->lng;
+  return $place_data;
+}
+
+$place_data = isset($_GET['place']) ? geocode($_GET['place']) : geocode('Paris');
 $unit = 'metric';
-$weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
-$forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_APP_ID.'&q='.$city.'&units='.$unit;
+$weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$place_data->lat.'&long='.$place_data->lng.'&units='.$unit;
+$forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$place_data->lat.'&long='.$place_data->lng.'&units='.$unit;
 
 function get_data($url) {
 	$path = './cache/'.md5($url);
@@ -34,8 +46,8 @@ $forecast_data = get_data($forecast_url);
 </head>
 <body>
 	<header>
-		<form class="input-city grid-12" action="/" method="get">
-			<input type="text" name="city" id="city" placeholder="Rechercher une ville, un pays">
+		<form class="input-place grid-12" action="/" method="get">
+			<input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
 			<div class="search-icon">
 				<i class="fa fa-search"></i>
 			</div>

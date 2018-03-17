@@ -12,7 +12,7 @@ header {
 	background: var(--main);
 }
 
-form.input-city {
+form.input-place {
 	position: relative;
 
 	input, button {
@@ -31,7 +31,7 @@ form.input-city {
 			color: var(--light);
 		}
 
-		&[name=city] {
+		&.place {
 			width: 180px;
 			padding: 0 10px 0 30px;
 		}
