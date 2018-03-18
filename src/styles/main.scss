@@ -161,5 +161,29 @@ section.meteo {
       text-align: center;
       color: var(--medium);
     }
+
+    .temp-min-max {
+      display: flex;
+      justify-content: space-evenly;
+
+      .temp-min, .temp-max {
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+        color: var(--dark);
+      }
+    }
+
+    .wind {
+      font-size: 12px;
+      font-weight: 400;
+      text-align: center;
+      color: var(--dark);
+
+      .unit {
+        font-size: 10px;
+        color: var(--medium);
+      }
+    }
   }
 }

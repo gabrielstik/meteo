@@ -40,6 +40,25 @@ class Weather {
     }
     return $data;
   }
+
+  public function deg_to_str($deg) {
+    if ($deg < 360 / 32 * 1 || $deg >= 360 / 32 * 31) return 'N'; 
+    else if ($deg < 360 / 32 * 3) return 'NNE'; 
+    else if ($deg < 360 / 32 * 5) return 'NE'; 
+    else if ($deg < 360 / 32 * 7) return 'ENE'; 
+    else if ($deg < 360 / 32 * 9) return 'E'; 
+    else if ($deg < 360 / 32 * 11) return 'ESE'; 
+    else if ($deg < 360 / 32 * 13) return 'SE'; 
+    else if ($deg < 360 / 32 * 15) return 'SSE'; 
+    else if ($deg < 360 / 32 * 17) return 'S'; 
+    else if ($deg < 360 / 32 * 19) return 'SSO'; 
+    else if ($deg < 360 / 32 * 21) return 'SO'; 
+    else if ($deg < 360 / 32 * 23) return 'OSO'; 
+    else if ($deg < 360 / 32 * 25) return 'O';
+    else if ($deg < 360 / 32 * 27) return 'ONO';
+    else if ($deg < 360 / 32 * 29) return 'NO';
+    else if ($deg < 360 / 32 * 31) return 'NNO';
+  }
 }
 $Weather = new Weather();
 
@@ -85,8 +104,8 @@ $Weather = new Weather();
 					<div class="hum">Humidité</div>
 				</div>
 				<div class="values">
-					<div class="min"><?= round($Weather->weather_data->main->temp_min) ?><span class="unit">°C</span></div>
-					<div class="max"><?= round($Weather->weather_data->main->temp_max) ?><span class="unit">°C</span></div>
+					<div class="min"><?= round($Weather->weather_data->main->temp_min) ?><span class="unit">°</span></div>
+					<div class="max"><?= round($Weather->weather_data->main->temp_max) ?><span class="unit">°</span></div>
 					<div class="feels"><?= round($Weather->weather_data->main->humidity) ?>%</div>
 				</div>
 			</div>
@@ -96,10 +115,16 @@ $Weather = new Weather();
       <? for ($i = 4; $i < 40; $i += 8) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
-          <div class="temp"><?= round($forecast[$i]->main->temp) ?>°C</div>
-          <div class="value"><?= round($forecast[$i]->main->temp_min) ?>°C</div>
-          <div class="value"><?= round($forecast[$i]->main->temp_max) ?>°C</div>
-          <div class="value"><?= round($forecast[$i]->main->pressure) ?> psi</div>
+          <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
+          <div class="temp-min-max">
+            <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
+            <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
+          </div>
+          <div class="wind">
+            <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
+            <?= round($forecast[$i]->wind->speed) ?>
+            <span class="unit">km/h</span>
+          </div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
         </div>
       <? } ?>
