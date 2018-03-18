@@ -81,7 +81,8 @@ section.meteo {
 
   h3 {
     font-size: 12px;
-		text-transform: uppercase;
+    text-transform: uppercase;
+    text-align: center;
 		color: var(--dark);
   }
   
@@ -100,7 +101,7 @@ section.meteo {
 	}
 
 	.current {
-    width: 380px;
+    width: 460px;
 		height: 210px;
     background: var(--white);
 
@@ -140,19 +141,25 @@ section.meteo {
 		}
   }
   
-  .day-forecast {
-    width: 480px;
+  .week-forecast {
+    width: 400px;
     margin-left: 20px;
   }
 
-  .week-forecast {
+  .day-forecast {
     margin-top: 20px;
     width: 100%;
+  }
 
-    .day {
-      width: 70px;
-      margin: 0 5px;
-      display: inline-block;
+  .day {
+    width: 70px;
+    margin: 0 5px;
+    display: inline-block;
+
+    .temp {
+      font-size: 24px;
+      text-align: center;
+      color: var(--medium);
     }
   }
 }

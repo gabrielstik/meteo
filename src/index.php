@@ -91,34 +91,29 @@ $Weather = new Weather();
 				</div>
 			</div>
 		</div>
-    <div class="day-forecast block">
-      <h2>Prévisions sur 12 heures</h2>
-    </div>
     <div class="week-forecast block">
       <h2>Prévisions sur 5 jours</h2>
-      <?php for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
+      <? for ($i = 4; $i < 40; $i += 8) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
-          <div class="item">
-            <span class="label">Température</span>
-            <span class="value"><?= round($forecast[$i]->main->temp) ?>°C</span>
-          </div>
-          <div class="item">
-            <span class="label">Minimum</span>
-            <span class="value"><?= round($forecast[$i]->main->temp_min) ?>°C</span>
-          </div>
-          <div class="item">
-            <span class="label">Maximum</span>
-            <span class="value"><?= round($forecast[$i]->main->temp_max) ?>°C</span>
-          </div>
-          <div class="item">
-            <span class="label">Pression</span>
-            <span class="value"><?= round($forecast[$i]->main->pressure) ?> psi</span>
-          </div>
-          <div class="item">
-            <span class="label">Humidité</span>
-            <span class="value"><?= round($forecast[$i]->main->humidity) ?>%</span>
-          </div>
+          <div class="temp"><?= round($forecast[$i]->main->temp) ?>°C</div>
+          <div class="value"><?= round($forecast[$i]->main->temp_min) ?>°C</div>
+          <div class="value"><?= round($forecast[$i]->main->temp_max) ?>°C</div>
+          <div class="value"><?= round($forecast[$i]->main->pressure) ?> psi</div>
+          <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
+        </div>
+      <? } ?>
+    </div>
+    <div class="day-forecast block">
+      <h2>Prévisions sur 36 heures</h2>
+      <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
+        <div class="day">
+          <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?><br><?= strftime('%kh', $forecast[$i]->dt) ?></h3>
+          <div class="value"><?= round($forecast[$i]->main->temp) ?>°C</div>
+          <div class="value"><?= round($forecast[$i]->main->temp_min) ?>°C</div>
+          <div class="value"><?= round($forecast[$i]->main->temp_max) ?>°C</div>
+          <div class="value"><?= round($forecast[$i]->main->pressure) ?> psi</div>
+          <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
         </div>
       <? } ?>
     </div>
