@@ -47,10 +47,6 @@ include './components/header.php';
             <img src="assets/images/src/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
           </div>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
-          <div class="temp-min-max">
-            <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
-            <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
-          </div>
           <div class="wind">
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
             <br>
@@ -77,10 +73,6 @@ include './components/header.php';
             <img src="assets/images/src/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
           </div>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
-          <div class="temp-min-max">
-            <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
-            <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
-          </div>
           <div class="wind">
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?><br>
             <?= round($forecast[$i]->wind->speed * 3.6) ?>

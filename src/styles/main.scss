@@ -117,7 +117,6 @@ section.meteo {
   }
   
   .block {
-    height: 300px;
     padding: 5px 20px;
     display: inline-block;
     vertical-align: top;
@@ -207,18 +206,6 @@ section.meteo {
       font-size: 24px;
       text-align: center;
       color: var(--medium);
-    }
-
-    .temp-min-max {
-      display: flex;
-      justify-content: space-evenly;
-
-      .temp-min, .temp-max {
-        font-size: 14px;
-        font-weight: 700;
-        text-align: center;
-        color: var(--dark);
-      }
     }
 
     .wind {
