@@ -10,3 +10,14 @@
 	<title>Météo</title>
 </head>
 <body>
+<header>
+  <form class="input-place auto-960" action="/" method="get">
+    <input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
+    <div class="search-icon">
+      <i class="fa fa-search"></i>
+    </div>
+    <button class="locate">
+      <i class="fa fa-location-arrow"></i>
+    </button>
+  </form>
+</header>

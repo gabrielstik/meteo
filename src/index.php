@@ -1,20 +1,10 @@
 <?
 setlocale(LC_ALL, 'fr_FR');
+include './config.php';
 include './components/Weather.php';
 $Weather = new Weather();
 include './components/header.php';
 ?>
-<header>
-  <form class="input-place auto-960" action="/" method="get">
-    <input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
-    <div class="search-icon">
-      <i class="fa fa-search"></i>
-    </div>
-    <button class="locate">
-      <i class="fa fa-location-arrow"></i>
-    </button>
-  </form>
-</header>
 <section class="meteo auto-960">
   <h1>
     <?= $Weather->place_data->city ?>
@@ -74,7 +64,11 @@ include './components/header.php';
     <div class="flex">
       <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
-          <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
+          <h3>
+            <?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?>
+            <br>
+            <?= strftime('%kh', $forecast[$i]->dt) ?>
+          </h3>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
           <div class="temp-min-max">
             <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>

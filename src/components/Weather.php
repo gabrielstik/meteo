@@ -1,6 +1,6 @@
 <?
 class Weather {
-  public function __construct() {
+  function __construct() {
     define('OPEN_WEATHER_API_KEY', '08da33fe0bd44b99b35ef3eabc42fddd');
     define('GOOGLE_API_KEY', 'AIzaSyA412LU3h-USYKW_U-_al9fOEeZpsjTiic');
 
@@ -16,7 +16,7 @@ class Weather {
     $this->forecast_data = $this->get_data($forecast_url);
   }
 
-  private function geocode() {
+  function geocode() {
     $this->place_data = new stdClass();
     $this->place_data->city = $this->geocoder_data->results[0]->address_components[0]->long_name;
     $this->place_data->region = !empty($this->geocoder_data->results[0]->address_components[2]->long_name ) ?$this->geocoder_data->results[0]->address_components[2]->long_name : '';
@@ -26,7 +26,7 @@ class Weather {
     return $this->place_data;
   }
   
-  private function get_data($url) {
+  function get_data($url) {
     $path = './cache/'.md5($url);
     if (!is_dir('./cache')) mkdir('./cache');
     if (file_exists($path) && time() - filemtime($path) < 60) {
@@ -39,7 +39,7 @@ class Weather {
     return $data;
   }
 
-  public function deg_to_str($deg) {
+  function deg_to_str($deg) {
     if ($deg < 360 / 32 * 1 || $deg >= 360 / 32 * 31) return 'N'; 
     else if ($deg < 360 / 32 * 3) return 'NNE'; 
     else if ($deg < 360 / 32 * 5) return 'NE'; 
