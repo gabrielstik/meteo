@@ -12,12 +12,20 @@
 <body>
 <header>
   <form class="input-place auto-960" action="/" method="get">
-    <input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
-    <div class="search-icon">
-      <i class="fa fa-search"></i>
+    <div class="flex between">
+      <div class="nav-left">
+        <input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
+        <div class="search-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <button class="locate clickable">
+          <i class="fa fa-location-arrow"></i>
+        </button>
+      </div>
+      <div class="nav-right">
+        <button class="user clickable">Se connecter</button>
+        <button class="degree-unit clickable">°C</button>
+      </div>
     </div>
-    <button class="locate">
-      <i class="fa fa-location-arrow"></i>
-    </button>
   </form>
 </header>

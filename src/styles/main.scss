@@ -23,6 +23,10 @@ header {
   &.evenly {
     justify-content: space-evenly;
   }
+
+  &.between {
+    justify-content: space-between;
+  }
 }
 
 form.input-place {
@@ -33,14 +37,14 @@ form.input-place {
 		border: none;
 		border-radius: 15px;
 		outline: none;
-		background: var(--second);
-		font-family: inherit;
-		font-size: 12px;
-		font-weight: 500;
-		font-style: italic;
-		color: var(--light);
+    background: var(--second);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--light);
 
 		&::placeholder {
+      font-style: italic;
 			color: var(--light);
 		}
 
@@ -53,12 +57,25 @@ form.input-place {
       width: 30px;
 			font-size: 14px;
 			cursor: pointer;
+    }
+    
+    &.user {
+      padding: 0 20px;
+      cursor: pointer;
+    }
 
-			&:hover {
+    &.degree-unit {
+      width: 30px;
+    }
+
+    &.clickable {
+      cursor: pointer;
+
+      &:hover {
 				background: var(--second-hover);
 				transition: all .2s ease-in-out;
 			}
-		}
+    }
 	}
 
 	.search-icon {

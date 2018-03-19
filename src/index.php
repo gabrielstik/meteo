@@ -39,7 +39,7 @@ include './components/header.php';
   </div>
   <div class="week-forecast block">
     <h2>Prévisions sur 5 jours</h2>
-    <div class="flex">
+    <div class="flex evenly">
       <? for ($i = 4; $i < 40; $i += 8) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
@@ -61,7 +61,7 @@ include './components/header.php';
   </div>
   <div class="day-forecast block">
     <h2>Prévisions sur 36 heures</h2>
-    <div class="flex">
+    <div class="flex evenly">
       <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3>
