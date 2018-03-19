@@ -17,6 +17,14 @@ header {
 	margin: auto;
 }
 
+.flex {
+  display: flex;
+
+  &.evenly {
+    justify-content: space-evenly;
+  }
+}
+
 form.input-place {
 	position: relative;
 
@@ -107,11 +115,21 @@ section.meteo {
 
 		.temp, .temp-values {
 			display: inline-block;
-		}
+    }
+    
+    .icon {
+      width: 80px;
+      margin-right: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
 
 		.temp {
 			margin-right: 50px;
-			display: inline-block;
 			position: relative;
 			font-size: 64px;
 			font-weight: 500;
@@ -149,11 +167,6 @@ section.meteo {
   .day-forecast {
     margin-top: 20px;
     width: calc(100% - 40px);
-  }
-
-  .flex {
-    display: flex;
-    justify-content: space-evenly;
   }
 
   .day {

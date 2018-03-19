@@ -19,8 +19,8 @@ class Weather {
   private function geocode() {
     $this->place_data = new stdClass();
     $this->place_data->city = $this->geocoder_data->results[0]->address_components[0]->long_name;
-    $this->place_data->region = $this->geocoder_data->results[0]->address_components[2]->long_name;
-    $this->place_data->country = $this->geocoder_data->results[0]->address_components[3]->long_name;
+    $this->place_data->region = !empty($this->geocoder_data->results[0]->address_components[2]->long_name ) ?$this->geocoder_data->results[0]->address_components[2]->long_name : '';
+    $this->place_data->country = !empty($this->geocoder_data->results[0]->address_components[3]->long_name) ?$this->geocoder_data->results[0]->address_components[3]->long_name : '';
     $this->place_data->lat = $this->geocoder_data->results[0]->geometry->location->lat;
     $this->place_data->lng = $this->geocoder_data->results[0]->geometry->location->lng;
     return $this->place_data;

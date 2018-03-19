@@ -18,24 +18,32 @@ include './components/header.php';
 <section class="meteo auto-960">
   <h1>
     <?= $Weather->place_data->city ?>
-    <span class="region"><?= $Weather->place_data->region ?>, <?= $Weather->place_data->country ?></span>
+    <span class="region">
+      <? echo $Weather->place_data->region;
+      if (!empty($Weather->place_data->country)) echo ', '.$Weather->place_data->country; ?>
+    </span>
   </h1>
   <div class="current block">
     <h2>Actuellement</h2>
-    <div class="temp">
-      <?= round($Weather->weather_data->main->temp) ?>
-      <div class="unit">°C</div>
-    </div>
-    <div class="temp-values">
-      <div class="labels">
-        <div class="min">Minimum</div>
-        <div class="max">Maximum</div>
-        <div class="hum">Humidité</div>
+    <div class="flex">
+      <div class="icon">
+        <img src="assets/images/src/<?= $Weather->weather_data->weather[0]->icon ?>.png" alt="Current weather" data-icon="">
       </div>
-      <div class="values">
-        <div class="min"><?= round($Weather->weather_data->main->temp_min) ?><span class="unit">°</span></div>
-        <div class="max"><?= round($Weather->weather_data->main->temp_max) ?><span class="unit">°</span></div>
-        <div class="feels"><?= round($Weather->weather_data->main->humidity) ?>%</div>
+      <div class="temp">
+        <?= round($Weather->weather_data->main->temp) ?>
+        <div class="unit">°C</div>
+      </div>
+      <div class="temp-values">
+        <div class="labels">
+          <div class="min">Minimum</div>
+          <div class="max">Maximum</div>
+          <div class="hum">Humidité</div>
+        </div>
+        <div class="values">
+          <div class="min"><?= round($Weather->weather_data->main->temp_min) ?><span class="unit">°</span></div>
+          <div class="max"><?= round($Weather->weather_data->main->temp_max) ?><span class="unit">°</span></div>
+          <div class="feels"><?= round($Weather->weather_data->main->humidity) ?>%</div>
+        </div>
       </div>
     </div>
   </div>
