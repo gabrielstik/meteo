@@ -125,6 +125,7 @@ $Weather = new Weather();
             <?= round($forecast[$i]->wind->speed) ?>
             <span class="unit">km/h</span>
           </div>
+          <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>"><i class="fa fa-location-arrow"></i></div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
         </div>
       <? } ?>
@@ -142,6 +143,7 @@ $Weather = new Weather();
         </div>
       <? } ?>
     </div>
-	</section>
+  </section>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
