@@ -21,7 +21,7 @@ class Weather {
     ));
     $this->place_data = new stdClass();
     $this->place_data->city = $geocoder_data->results[0]->address_components[0]->long_name;
-    $this->place_data->dept = $geocoder_data->results[0]->address_components[1]->long_name;
+    $this->place_data->region = $geocoder_data->results[0]->address_components[2]->long_name;
     $this->place_data->country = $geocoder_data->results[0]->address_components[3]->long_name;
     $this->place_data->lat = $geocoder_data->results[0]->geometry->location->lat;
     $this->place_data->lng = $geocoder_data->results[0]->geometry->location->lng;
@@ -89,7 +89,7 @@ $Weather = new Weather();
 	<section class="meteo auto-960">
 		<h1>
       <?= $Weather->place_data->city ?>
-      <span class="region"><?= $Weather->place_data->dept ?>, <?= $Weather->place_data->country ?></span>
+      <span class="region"><?= $Weather->place_data->region ?>, <?= $Weather->place_data->country ?></span>
     </h1>
 		<div class="current block">
 			<h2>Actuellement</h2>
@@ -112,36 +112,47 @@ $Weather = new Weather();
 		</div>
     <div class="week-forecast block">
       <h2>Prévisions sur 5 jours</h2>
-      <? for ($i = 4; $i < 40; $i += 8) { $forecast = $Weather->forecast_data->list ?>
-        <div class="day">
-          <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
-          <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
-          <div class="temp-min-max">
-            <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
-            <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
+      <div class="flex">
+        <? for ($i = 4; $i < 40; $i += 8) { $forecast = $Weather->forecast_data->list ?>
+          <div class="day">
+            <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
+            <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
+            <div class="temp-min-max">
+              <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
+              <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
+            </div>
+            <div class="wind">
+              <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
+              <?= round($forecast[$i]->wind->speed) ?>
+              <span class="unit">km/h</span>
+            </div>
+            <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed) ?>"><i class="fa fa-location-arrow"></i></div>
+            <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
           </div>
-          <div class="wind">
-            <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
-            <?= round($forecast[$i]->wind->speed) ?>
-            <span class="unit">km/h</span>
-          </div>
-          <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>"><i class="fa fa-location-arrow"></i></div>
-          <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
-        </div>
-      <? } ?>
+        <? } ?>
+      </div>
     </div>
     <div class="day-forecast block">
       <h2>Prévisions sur 36 heures</h2>
-      <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
-        <div class="day">
-          <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?><br><?= strftime('%kh', $forecast[$i]->dt) ?></h3>
-          <div class="value"><?= round($forecast[$i]->main->temp) ?>°C</div>
-          <div class="value"><?= round($forecast[$i]->main->temp_min) ?>°C</div>
-          <div class="value"><?= round($forecast[$i]->main->temp_max) ?>°C</div>
-          <div class="value"><?= round($forecast[$i]->main->pressure) ?> psi</div>
-          <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
-        </div>
-      <? } ?>
+      <div class="flex">
+        <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
+          <div class="day">
+            <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
+            <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
+            <div class="temp-min-max">
+              <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
+              <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
+            </div>
+            <div class="wind">
+              <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
+              <?= round($forecast[$i]->wind->speed) ?>
+              <span class="unit">km/h</span>
+            </div>
+            <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed) ?>"><i class="fa fa-location-arrow"></i></div>
+            <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
+          </div>
+        <? } ?>
+      </div>
     </div>
   </section>
   <script src="assets/js/app.js"></script>

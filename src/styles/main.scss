@@ -148,13 +148,17 @@ section.meteo {
 
   .day-forecast {
     margin-top: 20px;
-    width: 100%;
+    width: calc(100% - 40px);
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .day {
     width: 70px;
     margin: 0 5px;
-    display: inline-block;
 
     .temp {
       font-size: 24px;
