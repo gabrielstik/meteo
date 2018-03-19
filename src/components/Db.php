@@ -6,7 +6,7 @@ class Db {
 			$this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 		}
 		catch (Exception $e) {
-			die('db offline');
+			echo('DB offline');
 		}
 	}
 }

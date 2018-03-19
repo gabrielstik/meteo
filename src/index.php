@@ -16,8 +16,8 @@ include './components/header.php';
   <div class="current block">
     <h2>Actuellement</h2>
     <div class="flex">
-      <div class="icon">
-        <img src="assets/images/src/<?= $Weather->weather_data->weather[0]->icon ?>.png" alt="Current weather" data-icon="">
+      <div class="icon current-weather">
+        <img src="assets/images/src/<?= $Weather->weather_data->weather[0]->icon ?>.png" alt="Current weather">
       </div>
       <div class="temp">
         <?= round($Weather->weather_data->main->temp) ?>
@@ -43,6 +43,9 @@ include './components/header.php';
       <? for ($i = 4; $i < 40; $i += 8) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
+          <div class="icon forecast">
+            <img src="assets/images/src/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
+          </div>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
           <div class="temp-min-max">
             <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
@@ -50,10 +53,11 @@ include './components/header.php';
           </div>
           <div class="wind">
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
-            <?= round($forecast[$i]->wind->speed) ?>
+            <br>
+            <?= round($forecast[$i]->wind->speed * 3.6) ?>
             <span class="unit">km/h</span>
+            <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed * 3.6) ?>"><i class="fa fa-location-arrow"></i></div>
           </div>
-          <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed) ?>"><i class="fa fa-location-arrow"></i></div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
         </div>
       <? } ?>
@@ -69,17 +73,20 @@ include './components/header.php';
             <br>
             <?= strftime('%kh', $forecast[$i]->dt) ?>
           </h3>
+          <div class="icon forecast">
+            <img src="assets/images/src/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
+          </div>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
           <div class="temp-min-max">
             <span class="temp-min"><?= round($forecast[$i]->main->temp_min) ?>°</span>
             <span class="temp-max"><?= round($forecast[$i]->main->temp_max) ?>°</span>
           </div>
           <div class="wind">
-            <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
-            <?= round($forecast[$i]->wind->speed) ?>
+            <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?><br>
+            <?= round($forecast[$i]->wind->speed * 3.6) ?>
             <span class="unit">km/h</span>
+            <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed * 3.6) ?>"><i class="fa fa-location-arrow"></i></div>
           </div>
-          <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed) ?>"><i class="fa fa-location-arrow"></i></div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
         </div>
       <? } ?>
