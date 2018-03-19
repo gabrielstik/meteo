@@ -73,6 +73,12 @@ gulp.task('index', () => {
 		.pipe(gulp.dest(`${config.dist}`))  
 })
 
+gulp.task('components', () => {
+	return gulp.src(`${config.src}components/**/*.php`)
+		.pipe(gulp_plumber({errorHandler: gulp_notify.onError('Copy error:  <%= error.message %>')}))
+		.pipe(gulp.dest(`${config.dist}components`))  
+})
+
 gulp.task('fonts', () => {
 	return gulp.src(`${config.src}fonts/*`)
 		.pipe(gulp_plumber({errorHandler: gulp_notify.onError('Fonts error:  <%= error.message %>')}))
@@ -123,8 +129,9 @@ gulp.task('clean', () => {
 })
 
 // Wath changes
-gulp.task('watch', ['index', 'styles', 'vendor', 'scripts', 'fonts', 'lib', 'images', 'actions', 'htaccess'], () => {
-	gulp.watch(`${config.src}*.php`, ['index'])
+gulp.task('watch', ['index', 'components', 'styles', 'vendor', 'scripts', 'fonts', 'lib', 'images', 'actions', 'htaccess'], () => {
+  gulp.watch(`${config.src}*.php`, ['index'])
+  gulp.watch(`${config.src}components/**/*.php`, ['components'])
 	gulp.watch(`${config.src}views/**/*.php`, ['views'])
 	gulp.watch(`${config.src}actions/**/*.php`, ['actions'])
 	gulp.watch([`${config.src}styles/**/*.scss`, `!${config.src}styles/vendor`], ['styles'])
