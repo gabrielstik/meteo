@@ -24,7 +24,9 @@
       </div>
       <div class="nav-right">
         <button class="user clickable">Se connecter</button>
-        <button class="degree-unit clickable">°C</button>
+        <button class="degree-unit clickable">
+          <a>°C</a>
+        </button>
       </div>
     </div>
   </form>

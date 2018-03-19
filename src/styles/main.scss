@@ -76,6 +76,11 @@ form.input-place {
 				transition: all .2s ease-in-out;
 			}
     }
+
+    a {
+      text-decoration: none;
+      color: var(--light);
+    }
 	}
 
 	.search-icon {
