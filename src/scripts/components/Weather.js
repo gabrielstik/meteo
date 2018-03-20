@@ -5,7 +5,7 @@ export default class Weather {
       const orientation = $windArrow.dataset.orientation
       const speed = $windArrow.dataset.speed
       $windArrow.style.transform = `rotate(${orientation - 225}deg)`
-      const hue = 130 - speed * 3
+      let hue = 130 - speed * 3
       if (hue < 0) hue = 0
       $windArrow.style.color = `hsl(${hue},50%,50%)`
     }
