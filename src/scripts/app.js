@@ -1,5 +1,3 @@
-/* global geolocation */
-
 import './vendor/modernizr.js'
 
 import Weather from './components/Weather'
