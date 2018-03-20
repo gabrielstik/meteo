@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-  <form class="input-place auto-960" action="/" method="get">
+  <div class="input-place auto-960">
     <div class="flex between">
       <div class="nav-left">
         <input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
@@ -29,5 +29,5 @@
         </button>
       </div>
     </div>
-  </form>
+  </div>
 </header>
