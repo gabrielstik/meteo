@@ -8,7 +8,9 @@
   "dependencies": {
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
+    "browser-sync": "^2.23.6",
     "browserify": "^14.5.0",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.0",
@@ -26,6 +28,7 @@
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
+    "mamp": "^0.0.7",
     "npm-install-all": "^1.1.21",
     "vinyl-source-stream": "^1.1.0"
   },
