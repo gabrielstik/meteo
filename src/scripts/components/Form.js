@@ -6,7 +6,7 @@ export default class Form {
     $input.addEventListener('input', () => {
       place = $input.value
     })
-    window.addEventListener('keydown', (event) => {
+    $input.addEventListener('keydown', (event) => {
       if (event.keyCode == 13) window.location.replace(`/${place}`)
     })
   }
