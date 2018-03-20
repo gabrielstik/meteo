@@ -28,11 +28,13 @@ include './components/header.php';
           <div class="min">Minimum</div>
           <div class="max">Maximum</div>
           <div class="hum">Humidité</div>
+          <div class="pres">Pression</div>
         </div>
         <div class="values">
           <div class="min"><?= round($Weather->weather_data->main->temp_min) ?><span class="unit">°</span></div>
           <div class="max"><?= round($Weather->weather_data->main->temp_max) ?><span class="unit">°</span></div>
-          <div class="feels"><?= round($Weather->weather_data->main->humidity) ?>%</div>
+          <div class="hum"><?= round($Weather->weather_data->main->humidity) ?>%</div>
+          <div class="pres"><?= round($Weather->weather_data->main->pressure) ?> hPa</div>
         </div>
       </div>
     </div>
