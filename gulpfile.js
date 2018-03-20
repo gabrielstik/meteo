@@ -114,9 +114,8 @@ gulp.task('apache', () => {
 
 gulp.task('browsersync', () => {
   browserSync.init({
-    server: {
-        proxy: 'http://localhost:8888/'
-    }
+    proxy: 'http://localhost:8888/',
+    port: 8888
   })
 })
 
