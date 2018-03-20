@@ -17,7 +17,7 @@ include './components/header.php';
     <h2>Actuellement</h2>
     <div class="flex">
       <div class="icon current-weather">
-        <img src="assets/images/src/<?= $Weather->weather_data->weather[0]->icon ?>.png" alt="Current weather">
+        <img src="assets/images/<?= $Weather->weather_data->weather[0]->icon ?>.png" alt="Current weather">
       </div>
       <div class="temp">
         <?= round($Weather->weather_data->main->temp) ?>
@@ -44,7 +44,7 @@ include './components/header.php';
         <div class="day">
           <h3><?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?></h3>
           <div class="icon forecast">
-            <img src="assets/images/src/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
+            <img src="assets/images/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
           </div>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
           <div class="wind">
@@ -70,7 +70,7 @@ include './components/header.php';
             <?= strftime('%kh', $forecast[$i]->dt) ?>
           </h3>
           <div class="icon forecast">
-            <img src="assets/images/src/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
+            <img src="assets/images/<?= $Weather->forecast_data->list[$i]->weather[0]->icon ?>.png" alt="Current weather">
           </div>
           <div class="temp"><?= round($forecast[$i]->main->temp) ?>°</div>
           <div class="wind">
