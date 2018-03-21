@@ -14,17 +14,36 @@
   <div class="input-place auto-960">
     <div class="flex between">
       <div class="nav-left">
-        <input type="text" class="place" name="place" id="place" placeholder="Rechercher une ville, un pays">
+        <input type="text" class="place blue" name="place" id="place" placeholder="Rechercher une ville, un pays">
         <div class="search-icon">
           <i class="fa fa-search"></i>
         </div>
-        <button class="locate clickable">
+        <button class="locate clickable blue">
           <i class="fa fa-location-arrow"></i>
         </button>
       </div>
       <div class="nav-right">
-        <button class="user clickable">Se connecter</button>
-        <button class="degree-unit clickable">
+        <button class="user clickable blue">Se connecter</button>
+        <div class="connexion-container">
+          <form class="block connexion" action="/" method="post">
+            <div class="title">Se connecter</div>
+            <div class="item">
+              <label for="mail">Mail</label>
+              <input class="grey" type="text" name="mail" id="mail" placeholder="bruno.simon@hetic.net">
+            </div>
+            <div class="item">
+              <label for="password">Mot de passe</label>
+              <input class="grey" type="password" name="password" id="password" placeholder="••••••">
+              <div class="hint">Mot de passe oublié ?</div>
+            </div>
+            <button type="submit">Se connecter</button>
+            <div class="quit">
+              <div class="branch-1"></div>
+              <div class="branch-2"></div>
+            </div>
+          </form>
+        </div>
+        <button class="degree-unit clickable blue">
           <a>°C</a>
         </button>
       </div>
