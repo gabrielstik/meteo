@@ -93,19 +93,13 @@ header {
   top: 0;
   left: 0;
   z-index: 100000;
-  display: none;
   background: rgba(0,0,0,.8);
-  opacity: 0;
-  will-change: opacity;
-  transition: opacity .2s ease-in;
+  transform: translateY(-100vh);
+  will-change: transform;
+  transition: transform .5s ease-in-out;
 
   &.active {
-    display: block;
-    opacity: 1;
-
-    form.connexion {
-      transform: translateY(0);
-    }
+    transform: translateY(0);
   }
 
   form.connexion {
@@ -116,9 +110,6 @@ header {
     position: relative;
     background: var(--white);
     box-shadow: 0 0 10px rgba(0,0,0,.05);
-    transform: translateY(-100vh);
-    will-change: transform;
-    transition: transform .2s ease-in-out;
 
     .title {
       font-size: 24px;
