@@ -93,12 +93,14 @@ header {
   top: 0;
   left: 0;
   z-index: 100000;
+  display: none;
   background: rgba(0,0,0,.8);
   opacity: 0;
   will-change: opacity;
   transition: opacity .2s ease-in;
 
   &.active {
+    display: block;
     opacity: 1;
 
     form.connexion {
