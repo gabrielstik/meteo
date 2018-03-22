@@ -39,8 +39,7 @@ section.meteo {
     background: var(--white);
 
     &.favoris {
-      margin: 20px auto;
-      display: block;
+      width: 420px;
     }
 
 		.temp, .temp-values {
