@@ -38,6 +38,11 @@ section.meteo {
     width: 460px;
     background: var(--white);
 
+    &.favoris {
+      margin: 20px auto;
+      display: block;
+    }
+
 		.temp, .temp-values {
 			display: inline-block;
     }

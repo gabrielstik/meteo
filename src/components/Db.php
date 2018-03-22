@@ -14,4 +14,9 @@ class Db {
     $user = $query->fetch();
     return $user->password;
   }
+  function getFavoris($user) {
+    $query = $this->pdo->query("SELECT * FROM users WHERE username = 'bruno.simon@hetic.net'");
+    $user = $query->fetch();
+    return $user->favoris;
+  }
 }

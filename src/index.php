@@ -1,7 +1,7 @@
 <?
 session_start();
 setlocale(LC_ALL, 'fr_FR');
-include './config.php';
+require_once './config.php';
 include './components/Db.php';
 
 include './components/Session.php';
@@ -22,11 +22,11 @@ require './components/Weather.php';
 include './components/partials/header.php';
 
 
-if (!empty($_GET['q']) && $_GET['q'] != 'favoris') {
-  include './components/views/home.php';
+if (!empty($_GET['q']) && $_GET['q'] == 'favoris') {
+  include './components/views/favoris.php';
 }
 else {
-  include './components/views/favoris.php';
+  include './components/views/home.php';
 }
 
 include './components/partials/footer.php';
