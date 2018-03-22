@@ -25,7 +25,7 @@
       <div class="nav-right">
         <button class="user clickable blue">Se connecter</button>
         <div class="connexion-container">
-          <form class="block connexion" action="/" method="post">
+          <form class="block connexion" action="/<?= $place ?>" method="get">
             <div class="title">Se connecter</div>
             <div class="item">
               <label for="mail">Mail</label>
