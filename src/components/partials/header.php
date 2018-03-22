@@ -23,7 +23,15 @@
         </button>
       </div>
       <div class="nav-right">
-        <button class="user clickable blue">Se connecter</button>
+        <? if (!isset($_SESSION['username'])) { ?>
+          <button class="js-show-form user clickable blue">Se connecter</button>
+        <? } else { ?>
+          <button class="user clickable blue">
+            <a href="/favoris">Mes favoris</a>
+          <button class="user clickable blue">
+            <a href="/disconnect">Se déconnecter</a>
+          </button>
+        <?  } ?>
         <div class="connexion-container">
           <form class="block connexion" action="/<?= $place ?>" method="get">
             <div class="title">Se connecter</div>

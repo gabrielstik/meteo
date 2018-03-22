@@ -1,6 +1,6 @@
 export default class Connection {
   constructor() {
-    const $button = document.querySelector('button.user')
+    const $button = document.querySelector('.js-show-form')
     const $form = document.querySelector('.connexion-container ')
     const $quit = document.querySelector('form .quit')
 
