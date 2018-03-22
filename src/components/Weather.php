@@ -1,6 +1,6 @@
 <?
 class Weather {
-  function __construct() {
+  function __construct($place) {
     define('OPEN_WEATHER_API_KEY', '08da33fe0bd44b99b35ef3eabc42fddd');
     define('GOOGLE_API_KEY', 'AIzaSyA412LU3h-USYKW_U-_al9fOEeZpsjTiic');
 
@@ -20,12 +20,14 @@ class Weather {
 
   function geocode() {
     $this->place_data = new stdClass();
-    $this->place_data->city = $this->geocoder_data->results[0]->address_components[0]->long_name;
-    $this->place_data->region = !empty($this->geocoder_data->results[0]->address_components[2]->long_name ) ?$this->geocoder_data->results[0]->address_components[2]->long_name : '';
-    $this->place_data->country = !empty($this->geocoder_data->results[0]->address_components[3]->long_name) ?$this->geocoder_data->results[0]->address_components[3]->long_name : '';
-    $this->place_data->lat = $this->geocoder_data->results[0]->geometry->location->lat;
-    $this->place_data->lng = $this->geocoder_data->results[0]->geometry->location->lng;
-    return $this->place_data;
+    if (!empty($this->geocoder_data->results[0])) {
+      $this->place_data->city =  $this->geocoder_data->results[0]->address_components[0]->long_name;
+      $this->place_data->region = !empty($this->geocoder_data->results[0]->address_components[2]->long_name ) ?$this->geocoder_data->results[0]->address_components[2]->long_name : '';
+      $this->place_data->country = !empty($this->geocoder_data->results[0]->address_components[3]->long_name) ?$this->geocoder_data->results[0]->address_components[3]->long_name : '';
+      $this->place_data->lat = $this->geocoder_data->results[0]->geometry->location->lat;
+      $this->place_data->lng = $this->geocoder_data->results[0]->geometry->location->lng;
+      return $this->place_data;
+    }
   }
   
   function get_data($url) {

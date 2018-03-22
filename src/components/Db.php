@@ -8,5 +8,10 @@ class Db {
 		catch (Exception $e) {
 			echo('DB offline');
 		}
-	}
+  }
+  function getHashedPassword($user) {
+    $query = $this->pdo->query("SELECT * FROM users WHERE username = 'bruno.simon@hetic.net'");
+    $user = $query->fetch();
+    return $user->password;
+  }
 }
