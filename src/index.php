@@ -1,7 +1,7 @@
 <?
 session_start();
 setlocale(LC_ALL, 'fr_FR');
-require_once './config.php';
+require './config.php';
 include './components/Db.php';
 
 include './components/Session.php';
@@ -24,6 +24,9 @@ include './components/partials/header.php';
 
 if (!empty($_GET['q']) && $_GET['q'] == 'favoris') {
   include './components/views/favoris.php';
+}
+else if (!empty($_GET['q']) && $_GET['q'] == '404') {
+  include './components/views/404.php';
 }
 else {
   include './components/views/home.php';

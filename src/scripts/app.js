@@ -6,11 +6,10 @@ import Form from './components/Form'
 import Connection from './components/Connection'
 
 const weather = new Weather()
-const geolocate = new Geolocation()
-const form = new Form()
+new Geolocation()
+new Form()
 if (document.querySelector('.js-show-form')) {
-  const connection = new Connection()
-  console.log('?')
+  new Connection()
 }
 
 weather.rotateWindArrows()

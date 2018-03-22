@@ -1,3 +1,4 @@
+<? if (isset($_SESSION['username'])) { ?>
 <section class="meteo auto-960">
   <? $Db = new Db(); ?>
   <h1>Mes favoris</h1>
@@ -34,3 +35,7 @@
     <? } ?>
   </div>
 </section>
+<? }
+else {
+  include './components/views/404.php';
+}
