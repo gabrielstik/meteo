@@ -1,4 +1,5 @@
 <section class="meteo auto-960">
+  <? $Weather = new Weather($place); ?>
   <h1>
     <?= $Weather->place_data->city ?>
     <span class="region">

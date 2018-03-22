@@ -19,10 +19,14 @@ else {
 }
 
 require './components/Weather.php';
-$Weather = new Weather($place);
 include './components/partials/header.php';
 
 
-include './components/views/home.php';
+if (!empty($_GET['q']) && $_GET['q'] != 'favoris') {
+  include './components/views/home.php';
+}
+else {
+  include './components/views/favoris.php';
+}
 
 include './components/partials/footer.php';
