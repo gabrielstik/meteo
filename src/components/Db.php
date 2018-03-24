@@ -19,8 +19,11 @@ class Db {
     $user = $query->fetch();
     return json_decode($user->favoris);
   }
-  function pushFavoris($user, $newFavoris) {
-    $exec = $this->pdo->exec("UPDATE users SET favoris = '".$newFavoris."' WHERE username = 'bruno.simon@hetic.net'");
+  function pushFavoris($user, $favoris) {
+    echo '<pre>';
+    print_r($favoris);
+    echo '</pre>';
+    $exec = $this->pdo->exec("UPDATE users SET favoris = '".json_encode($favoris)."' WHERE username = 'bruno.simon@hetic.net'");
     $exec->execute();
   }
 }

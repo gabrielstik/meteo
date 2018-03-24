@@ -1,7 +1,7 @@
 <?
 class Session {
   function __construct() {
-    if (isset($_POST['remove'])) $this->remove($_POST['remove']);
+    if (isset($_POST['remove'])) $this->removeFavoris($_POST['remove']);
   }
   function verify($user, $password) {
     $db = new Db();
@@ -14,10 +14,16 @@ class Session {
       header('Location: /'.$_GET['q']);
     }
   }
-  function remove($place) {
+  function removeFavoris($place) {
     $Db = new Db();
     $user = $_SESSION['username'];
-    $favoris = $Db->getFavoris($user);
-    // $Db->pushFavoris($user, $newFavoris);
+    $favoris = $Db->getFavoris($user)->places;
+    echo '<pre>';
+    print_r($favoris);
+    echo '</pre>';
+    for ($i = 0; $i < count($favoris); $i++) {
+      if ($favoris[$i] == $place) unset($favoris[$i]);
+    }
+    $Db->pushFavoris($user, $favoris);
   }
 }
