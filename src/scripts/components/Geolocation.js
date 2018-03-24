@@ -12,7 +12,7 @@ export default class Geolocation {
           lat: position.coords.latitude,
           long: position.coords.longitude
         }
-        window.location.replace(`/${pos.lat},+${pos.long}`)
+        window.location.replace(`/${pos.lat},${pos.long}`)
       },
       () => { return false },
       { timeout: 10000 })

@@ -16,9 +16,23 @@ class Weather {
   function geocode() {
     $this->place_data = new stdClass();
     if (!empty($this->geocoder_data->results[0])) {
-      $this->place_data->city =  $this->geocoder_data->results[0]->address_components[0]->long_name;
-      $this->place_data->region = !empty($this->geocoder_data->results[0]->address_components[2]->long_name ) ?$this->geocoder_data->results[0]->address_components[2]->long_name : '';
-      $this->place_data->country = !empty($this->geocoder_data->results[0]->address_components[3]->long_name) ?$this->geocoder_data->results[0]->address_components[3]->long_name : '';
+      foreach ($this->geocoder_data->results[0]->address_components as $adress_component) {
+        switch ($adress_component->types[0]) {
+          case 'locality':
+          $this->place_data->city = $adress_component->long_name;
+          break;
+          case 'administrative_area_level_1':
+          $this->place_data->region = $adress_component->long_name;
+          break;
+          case 'country':
+          $this->place_data->country = $adress_component->long_name;
+          break;
+          default:
+        }
+      }
+      if (empty($this->place_data->city)) $this->place_data->city = '';
+      if (empty($this->place_data->region)) $this->place_data->region = '';
+      if (empty($this->place_data->country)) $this->place_data->country = '';
       $this->place_data->lat = $this->geocoder_data->results[0]->geometry->location->lat;
       $this->place_data->lng = $this->geocoder_data->results[0]->geometry->location->lng;
       return $this->place_data;
