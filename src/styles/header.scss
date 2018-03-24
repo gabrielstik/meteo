@@ -56,7 +56,27 @@ header {
 		&.locate {
       width: 30px;
 			font-size: 14px;
-			cursor: pointer;
+      cursor: pointer;
+      will-change: transform;
+      transition: color .2s ease-in-out;
+
+      &.locating {
+        animation-name: locating;
+        animation-iteration-count: infinite;
+        animation-duration: 1.5s;
+        animation-direction: normal;
+        animation-timing-function: ease-out;
+        
+        @keyframes locating {
+          0% { transform: rotate(0deg) }
+          50% { transform: rotate(360deg) }
+          100% { transform: rotate(360deg) }
+        }
+      }
+      
+      &.fail {
+        color: red;
+      }
     }
     
     &.user {

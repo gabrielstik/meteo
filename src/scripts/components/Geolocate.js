@@ -1,11 +1,12 @@
 export default class Geolocation {
   constructor() {
-    const $button = document.querySelector('.locate')
-    $button.addEventListener('mousedown', () => {
+    this.$button = document.querySelector('.locate')
+    this.$button.addEventListener('mousedown', () => {
       this.getPos()
     })
   }
   getPos() {
+    this.$button.classList.add('locating')
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) =>  {
         const pos = {
@@ -14,8 +15,12 @@ export default class Geolocation {
         }
         window.location.replace(`/${pos.lat},${pos.long}`)
       },
-      () => { return false },
-      { timeout: 10000 })
+      () => {
+        this.$button.classList.remove('locating')
+        this.$button.classList.add('fail')
+        setTimeout(() => { this.$button.classList.remove('fail') }, 1000)
+      },
+      { timeout: 5000 })
     }
   }
 }
