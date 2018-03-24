@@ -5,6 +5,10 @@ class Session {
       $Db = new Db();
       $Db->removeFavoris($_SESSION['username'], $_POST['remove']);
     }
+    if (isset($_POST['add']) && isset($_SESSION['username'])) {
+      $Db = new Db();
+      $Db->pushFavoris($_SESSION['username'], $_POST['add']);
+    }
   }
   function verify($user, $password) {
     $db = new Db();

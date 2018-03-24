@@ -6,12 +6,12 @@
     <div class="flex between">
     <? foreach ($favoris as $favori) {
       $Weather = new Weather($favori->place); ?>
-      <div class="current block favoris">
+      <a href="/<?= $favori->place ?>" class="current block favoris">
         <h2>
           <?= $Weather->place_data->city ?>
           <form class="remove-city" action="/favoris" method="post">
             <input type="hidden" name="remove" value="<?= $favori->place ?>">
-            <button type="submit" class="remove"><i class="fa fa-minus-circle"></i></button>
+            <button type="submit" class="action-button remove"><i class="fa fa-minus-circle"></i></button>
           </form>
         </h2>
         <div class="flex">
@@ -37,8 +37,16 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
     <? } ?>
+    <div class="current block favoris">
+      <h2>
+        <form action="/favoris" method="post">
+          <input class="add-favoris" type="text" name="add" placeholder="Ajouter une ville ici">
+          <button type="submit" class="action-button add"><i class="fa fa-plus-circle"></i></button>
+        </form>
+      </h2>
+    </div>
   </div>
 </section>
 <? }

@@ -20,7 +20,7 @@ class Db {
     return $favoris;
   }
   function pushFavoris($user, $favoris) {
-    $exec = $this->pdo->exec("INSERT INTO favoris (favoris, username) VALUES ($favoris, $user)");
+    $exec = $this->pdo->prepare("INSERT INTO favoris (place, username) VALUES ('$favoris', '$user')");
     $exec->execute();
   }
   function removeFavoris($user, $favoris) {

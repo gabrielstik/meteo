@@ -42,16 +42,39 @@ section.meteo {
       width: 420px;
       margin-bottom: 30px;
 
-      .remove-city {
+      .remove-city, .add-city {
         display: inline;
       }
 
-      .remove {
+      .action-button {
         border: none;
         outline: none;
         font-size: inherit;
-        color: red;
         cursor: pointer;
+
+        &.add {
+          color: lime;
+        }
+
+        &.remove {
+          color: red;
+        }
+      }
+
+      .add-favoris {
+        width: 50%;
+        outline: none;
+        border: none;
+        border-bottom: solid 1px var(--medium);
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--dark);
+
+        &::placeholder {
+          font-weight: 400;
+          text-transform: none;
+        }
       }
     }
 
