@@ -33,16 +33,22 @@
           </button>
         <?  } ?>
         <div class="connexion-container">
-          <form class="block connexion" action="/<?= $place ?>" method="get">
+          <form class="block connexion" action="/<?= $place ?>" method="post">
             <div class="title">Se connecter</div>
             <div class="item">
               <label for="mail">Mail</label>
-              <input class="grey" type="text" name="mail" id="mail" placeholder="bruno.simon@hetic.net">
+              <input class="grey" type="text" name="mail" id="mail" placeholder="bruno.simon@hetic.net" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>">
+              <? if (isset($_GET['error']) && $_GET['error'] == 'notuser') { ?>
+                <div class="error-message">L'utilisateur n'existe pas.</div>
+              <? } ?>
             </div>
             <div class="item">
               <label for="password">Mot de passe</label>
               <input class="grey" type="password" name="password" id="password" placeholder="••••••">
               <div class="hint">Mot de passe oublié ?</div>
+              <? if (isset($_GET['error']) && $_GET['error'] == 'password') { ?>
+                <div class="error-message">Mot de passe incorrect.</div>
+              <? } ?>
             </div>
             <button type="submit">Se connecter</button>
             <div class="quit">

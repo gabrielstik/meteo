@@ -6,8 +6,8 @@ include './components/Db.php';
 
 include './components/Session.php';
 $session = new Session();
-if (isset($_GET['mail']) && isset($_GET['password'])) {
-  $session->verify($_GET['mail'], $_GET['password']);
+if (isset($_POST['mail']) && isset($_POST['password'])) {
+  $session->verify($_POST['mail'], $_POST['password']);
 }
 
 if (!empty($_GET['q']) && $_GET['q'] == 'disconnect') {

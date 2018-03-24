@@ -10,14 +10,14 @@ class Db {
 		}
   }
   function getHashedPassword($user) {
-    $query = $this->pdo->query("SELECT * FROM users WHERE username = 'bruno.simon@hetic.net'");
+    $query = $this->pdo->query("SELECT * FROM users WHERE username = '$user'");
     $user = $query->fetch();
-    return $user->password;
+    return !empty($user->password) ? $user->password : false;
   }
   function getFavoris($user) {
     $query = $this->pdo->query("SELECT * FROM favoris WHERE username = '$user'");
     $favoris = $query->fetchAll();
-    return $favoris;
+    return !empty($favoris) ? $favoris : false;
   }
   function pushFavoris($user, $favoris) {
     $exec = $this->pdo->prepare("INSERT INTO favoris (place, username) VALUES ('$favoris', '$user')");

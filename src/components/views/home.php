@@ -58,7 +58,7 @@
   <div class="day-forecast block">
     <h2>Prévisions sur 36 heures</h2>
     <div class="flex evenly">
-      <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
+      <? for ($i = 0; $i < 11; $i++) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3>
             <?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?>
