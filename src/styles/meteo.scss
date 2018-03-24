@@ -40,6 +40,19 @@ section.meteo {
 
     &.favoris {
       width: 420px;
+      margin-bottom: 30px;
+
+      .remove-city {
+        display: inline;
+      }
+
+      .remove {
+        border: none;
+        outline: none;
+        font-size: inherit;
+        color: red;
+        cursor: pointer;
+      }
     }
 
 		.temp, .temp-values {

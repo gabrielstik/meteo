@@ -3,7 +3,7 @@ class Weather {
   function __construct($place) {
     $geocoder_url = 'https://maps.googleapis.com/maps/api/geocode/json?key='.GOOGLE_API_KEY.'&language=fr&address='.str_replace(' ', '+', $place);
     $this->geocoder_data = $this->get_data($geocoder_url);
-    $this->place_data = isset($_GET['place']) ? $this->geocode($_GET['place']) : $this->geocode('Paris');
+    $this->place_data = isset($_GET['q']) ? $this->geocode($_GET['q']) : $this->geocode('Paris');
     
     $unit = 'metric';
     $weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
@@ -13,7 +13,7 @@ class Weather {
     $this->forecast_data = $this->get_data($forecast_url);
   }
 
-  function geocode() {
+  function geocode($place) {
     $this->place_data = new stdClass();
     if (!empty($this->geocoder_data->results[0])) {
       foreach ($this->geocoder_data->results[0]->address_components as $adress_component) {
@@ -30,7 +30,7 @@ class Weather {
           default:
         }
       }
-      if (empty($this->place_data->city)) $this->place_data->city = '';
+      if (empty($this->place_data->city)) $this->place_data->city = $place;
       if (empty($this->place_data->region)) $this->place_data->region = '';
       if (empty($this->place_data->country)) $this->place_data->country = '';
       $this->place_data->lat = $this->geocoder_data->results[0]->geometry->location->lat;

@@ -13,6 +13,7 @@ html, body {
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
 
   &.evenly {
     justify-content: space-evenly;

@@ -17,6 +17,10 @@ class Db {
   function getFavoris($user) {
     $query = $this->pdo->query("SELECT * FROM users WHERE username = 'bruno.simon@hetic.net'");
     $user = $query->fetch();
-    return $user->favoris;
+    return json_decode($user->favoris);
+  }
+  function pushFavoris($user, $newFavoris) {
+    $exec = $this->pdo->exec("UPDATE users SET favoris = '".$newFavoris."' WHERE username = 'bruno.simon@hetic.net'");
+    $exec->execute();
   }
 }

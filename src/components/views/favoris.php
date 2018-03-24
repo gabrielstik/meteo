@@ -2,12 +2,18 @@
 <section class="meteo auto-960">
   <? $Db = new Db(); ?>
   <h1>Mes favoris</h1>
-  <? $favoris = explode(';', $Db->getFavoris($_SESSION['username'])); ?>
+  <? $favoris = $Db->getFavoris($_SESSION['username']); ?>
     <div class="flex between">
-    <? foreach ($favoris as $place) {
+    <? foreach ($favoris->places as $place) {
       $Weather = new Weather($place); ?>
       <div class="current block favoris">
-        <h2><?= $Weather->place_data->city ?></h2>
+        <h2>
+          <?= $Weather->place_data->city ?>
+          <form class="remove-city" action="/favoris" method="post">
+            <input type="hidden" name="remove" value="<?= $place ?>">
+            <button type="submit" class="remove"><i class="fa fa-minus-circle"></i></button>
+          </form>
+        </h2>
         <div class="flex">
           <div class="icon current-weather">
             <img src="assets/images/<?= $Weather->weather_data->weather[0]->icon ?>.png" alt="Current weather">
