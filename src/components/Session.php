@@ -26,4 +26,20 @@ class Session {
       header('Location: /'.$_GET['q'].'?error=notuser');
     }
   }
+  function check_unit() {
+    if (isset($_SESSION['unit'])) {
+      switch($_SESSION['unit']) {
+        case 'metric':
+        return '°C';
+        break;
+        case 'imperial':
+        return '°F';
+        break;
+        default:
+        return '°C';
+        break;
+      }
+    }
+    else return '°C';
+  }
 }

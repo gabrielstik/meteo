@@ -58,7 +58,7 @@
           </form>
         </div>
         <button class="degree-unit clickable blue">
-          <a>°C</a>
+          <a><?= $session->check_unit() ?></a>
         </button>
       </div>
     </div>

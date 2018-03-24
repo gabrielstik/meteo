@@ -119,16 +119,16 @@ header {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0;
+  top: -100vh;
   left: 0;
   z-index: 100000;
   background: rgba(0,0,0,.8);
-  transform: translateY(-100vh);
+  transform: translateY(0);
   will-change: transform;
   transition: transform .5s ease-in-out;
 
   &.active {
-    transform: translateY(0);
+    transform: translateY(100vh);
   }
 
   form.connexion {
