@@ -57,9 +57,10 @@
             </div>
           </form>
         </div>
-        <button class="degree-unit clickable blue">
-          <a href="/<?= isset($_GET['q']) ? $_GET['q'] : '' ?><?= $session->check_unit('temperature') == '°C' ? '?unit=imperial' : '' ?>"><?= $session->check_unit('temperature') ?></a>
-        </button>
+        <form action="/<?= $place ?>" method="post">
+          <input type="hidden" name="unit" value="<?= (isset($_SESSION['unit']) && $_SESSION['unit'] == 'imperial') ? 'metric' : 'imperial' ?>">
+          <button type="submit" class="degree-unit clickable blue"><?= $session->check_unit('temperature') == '°C' ? '°C' : '°F' ?></button>
+        </form>
       </div>
     </div>
   </div>

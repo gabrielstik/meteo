@@ -9,6 +9,7 @@ class Session {
       $Db = new Db();
       $Db->pushFavoris($_SESSION['username'], $_POST['add']);
     }
+    if (isset($_POST['unit'])) $_SESSION['unit'] = $_POST['unit'];
   }
   function verify($user, $password) {
     $db = new Db();
@@ -28,8 +29,8 @@ class Session {
   }
   function check_unit($unit) {
     if ($unit == 'temperature') {
-      if (isset($_GET['unit'])) {
-        switch($_GET['unit']) {
+      if (isset($_SESSION['unit'])) {
+        switch($_SESSION['unit']) {
           case 'metric':
           return '°C';
           break;
@@ -44,8 +45,8 @@ class Session {
       else return '°C';
     }
     else if ($unit == 'speed') {
-      if (isset($_GET['unit'])) {
-        switch($_GET['unit']) {
+      if (isset($_SESSION['unit'])) {
+        switch($_SESSION['unit']) {
           case 'metric':
           return 'km/h';
           break;

@@ -5,7 +5,7 @@ class Weather {
     $this->geocoder_data = $this->get_data($geocoder_url);
     $this->place_data = isset($_GET['q']) ? $this->geocode($_GET['q']) : $this->geocode('Paris');
 
-    $unit = isset($_GET['unit']) ? 'imperial' : 'metric';
+    $unit = isset($_SESSION['unit']) ? $_SESSION['unit'] : 'metric';
 
     $weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
     $forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
