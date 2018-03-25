@@ -1,5 +1,8 @@
 <section class="meteo auto-960">
-  <? $Weather = new Weather($place); ?>
+  <? $Weather = new Weather($place);  
+  if ($Weather->geocoder_data->status == 'ZERO_RESULTS') { ?>
+  <div class="error">Aucune ville ne correspond à votre recherche. Réessayez.</div>
+  <? } else { ?>
   <h1>
     <?= $Weather->place_data->city ?>
     <span class="region">
@@ -80,4 +83,5 @@
       <? } ?>
     </div>
   </div>
+  <? } ?>
 </section>

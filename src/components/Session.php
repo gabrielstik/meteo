@@ -6,8 +6,11 @@ class Session {
       $Db->removeFavoris($_SESSION['username'], $_POST['remove']);
     }
     if (isset($_POST['add']) && isset($_SESSION['username'])) {
-      $Db = new Db();
-      $Db->pushFavoris($_SESSION['username'], $_POST['add']);
+      $Weather = new Weather($_POST['add']);
+      if ($Weather->geocoder_data->status != 'ZERO_RESULTS') {
+        $Db = new Db();
+        $Db->pushFavoris($_SESSION['username'], $_POST['add']);
+      }
     }
     if (isset($_POST['unit'])) $_SESSION['unit'] = $_POST['unit'];
   }

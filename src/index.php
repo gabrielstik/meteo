@@ -4,6 +4,8 @@ setlocale(LC_ALL, 'fr_FR');
 require './config.php';
 include './components/Db.php';
 
+require './components/Weather.php';
+
 include './components/Session.php';
 $session = new Session();
 if (isset($_POST['mail']) && isset($_POST['password'])) {
@@ -18,7 +20,6 @@ else {
   $place = !empty($_GET['q']) ? $_GET['q'] : 'Paris';
 }
 
-require './components/Weather.php';
 include './components/partials/header.php';
 
 
