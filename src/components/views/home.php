@@ -36,10 +36,6 @@
       </div>
     </div>
     <div class="suntimes flex evenly">
-      <div class="time">
-        <i class="fa fa-clock-o"></i>
-        <?= strftime('%H:%M', $Weather->weather_data->dt) ?>
-      </div>
       <div class="sunrise">
         <i class="fa fa-sun-o"></i>
         <?= strftime('%H:%M', $Weather->weather_data->sys->sunrise) ?>
