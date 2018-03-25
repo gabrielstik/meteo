@@ -51,6 +51,11 @@ Now you can run the app.
 - Metrics & imperial units
 
 
+## Test user
+
+**username:** bruno
+**password:** motdepasse
+
 
 ## License
 
