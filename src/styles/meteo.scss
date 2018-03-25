@@ -7,6 +7,10 @@ section.meteo {
     vertical-align: top;
     background: var(--white);
     box-shadow: 0 0 10px rgba(0,0,0,.05);
+
+    @media #{$notebook} {
+      display: block;
+    }
   }
 
 	.region {
@@ -35,8 +39,12 @@ section.meteo {
   }
 
 	.current {
-    width: 460px;
+    width: calc(50% - 50px);
     background: var(--white);
+
+    @media #{$notebook} {
+      width: calc(100% - 40px);
+    }
 
     &.favoris {
       width: 420px;
@@ -114,8 +122,14 @@ section.meteo {
   }
   
   .week-forecast {
-    width: 400px;
+    width: calc(50% - 50px);
     margin-left: 20px;
+
+    @media #{$notebook} {
+      width: calc(100% - 40px);
+      margin-left: 0;
+      margin-top: 20px;
+    }
   }
 
   .day-forecast {

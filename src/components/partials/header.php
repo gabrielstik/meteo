@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="assets/css/vendor/reset.min.css">
 	<link rel="stylesheet" href="assets/css/style.min.css">
@@ -45,7 +45,6 @@
             <div class="item">
               <label for="password">Mot de passe</label>
               <input class="grey" type="password" name="password" id="password" placeholder="••••••">
-              <div class="hint">Mot de passe oublié ?</div>
               <? if (isset($_GET['error']) && $_GET['error'] == 'password') { ?>
                 <div class="error-message">Mot de passe incorrect.</div>
               <? } ?>

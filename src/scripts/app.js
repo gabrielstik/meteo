@@ -1,5 +1,3 @@
-import './vendor/modernizr.js'
-
 import Weather from './components/Weather'
 import Geolocate from './components/Geolocate'
 import Form from './components/Form'
