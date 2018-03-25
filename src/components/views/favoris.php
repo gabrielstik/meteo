@@ -20,7 +20,7 @@
           </div>
           <div class="temp">
             <?= round($Weather->weather_data->main->temp) ?>
-            <div class="unit">°C</div>
+            <div class="unit"><?= $session->check_unit('temperature') ?></div>
           </div>
           <div class="temp-values">
             <div class="labels">

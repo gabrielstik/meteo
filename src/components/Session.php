@@ -26,20 +26,38 @@ class Session {
       header('Location: /'.$_GET['q'].'?error=notuser');
     }
   }
-  function check_unit() {
-    if (isset($_SESSION['unit'])) {
-      switch($_SESSION['unit']) {
-        case 'metric':
-        return '°C';
-        break;
-        case 'imperial':
-        return '°F';
-        break;
-        default:
-        return '°C';
-        break;
+  function check_unit($unit) {
+    if ($unit == 'temperature') {
+      if (isset($_GET['unit'])) {
+        switch($_GET['unit']) {
+          case 'metric':
+          return '°C';
+          break;
+          case 'imperial':
+          return '°F';
+          break;
+          default:
+          return '°C';
+          break;
+        }
       }
+      else return '°C';
     }
-    else return '°C';
+    else if ($unit == 'speed') {
+      if (isset($_GET['unit'])) {
+        switch($_GET['unit']) {
+          case 'metric':
+          return 'km/h';
+          break;
+          case 'imperial':
+          return 'kn';
+          break;
+          default:
+          return 'km/h';
+          break;
+        }
+      }
+      else return 'km/h';
+    }
   }
 }

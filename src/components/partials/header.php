@@ -58,7 +58,7 @@
           </form>
         </div>
         <button class="degree-unit clickable blue">
-          <a><?= $session->check_unit() ?></a>
+          <a href="/<?= isset($_GET['q']) ? $_GET['q'] : '' ?><?= $session->check_unit('temperature') == '°C' ? '?unit=imperial' : '' ?>"><?= $session->check_unit('temperature') ?></a>
         </button>
       </div>
     </div>

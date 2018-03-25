@@ -15,7 +15,7 @@
       </div>
       <div class="temp">
         <?= round($Weather->weather_data->main->temp) ?>
-        <div class="unit">°C</div>
+        <div class="unit"><?= $session->check_unit('temperature') ?></div>
       </div>
       <div class="temp-values">
         <div class="labels">
@@ -47,7 +47,7 @@
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
             <br>
             <?= round($forecast[$i]->wind->speed * 3.6) ?>
-            <span class="unit">km/h</span>
+            <span class="unit"><?= $session->check_unit('speed') ?></span>
             <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed * 3.6) ?>"><i class="fa fa-location-arrow"></i></div>
           </div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
@@ -72,7 +72,7 @@
           <div class="wind">
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?><br>
             <?= round($forecast[$i]->wind->speed * 3.6) ?>
-            <span class="unit">km/h</span>
+            <span class="unit"><?= $session->check_unit('speed') ?></span>
             <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed * 3.6) ?>"><i class="fa fa-location-arrow"></i></div>
           </div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>

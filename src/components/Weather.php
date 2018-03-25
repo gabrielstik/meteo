@@ -4,8 +4,9 @@ class Weather {
     $geocoder_url = 'https://maps.googleapis.com/maps/api/geocode/json?key='.GOOGLE_API_KEY.'&language=fr&address='.str_replace(' ', '+', $place);
     $this->geocoder_data = $this->get_data($geocoder_url);
     $this->place_data = isset($_GET['q']) ? $this->geocode($_GET['q']) : $this->geocode('Paris');
-    
-    $unit = 'metric';
+
+    $unit = isset($_GET['unit']) ? 'imperial' : 'metric';
+
     $weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
     $forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
 
