@@ -40,6 +40,7 @@ section.meteo {
 
 	.current {
     width: calc(50% - 50px);
+    height: 250px;
     background: var(--white);
 
     @media #{$notebook} {
@@ -120,9 +121,16 @@ section.meteo {
 			}
 		}
   }
+
+  .suntimes {
+    margin-top: 40px;
+    font-size: 16px;
+    color: var(--dark);
+  }
   
   .week-forecast {
     width: calc(50% - 50px);
+    height: 250px;
     margin-left: 20px;
 
     @media #{$notebook} {

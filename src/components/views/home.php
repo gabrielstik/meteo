@@ -35,6 +35,20 @@
         </div>
       </div>
     </div>
+    <div class="suntimes flex evenly">
+      <div class="time">
+        <i class="fa fa-clock-o"></i>
+        <?= strftime('%H:%M', $Weather->weather_data->dt) ?>
+      </div>
+      <div class="sunrise">
+        <i class="fa fa-sun-o"></i>
+        <?= strftime('%H:%M', $Weather->weather_data->sys->sunrise) ?>
+      </div>
+      <div class="sunset">
+        <i class="fa fa-moon-o"></i>
+        <?= strftime('%H:%M', $Weather->weather_data->sys->sunset) ?>
+      </div>
+    </div>
   </div>
   <div class="week-forecast block">
     <h2>Prévisions sur 5 jours</h2>
