@@ -8,7 +8,7 @@ header {
 .input-place {
 	position: relative;
 
-	input, button {
+	input, button, .degree-unit {
     display: inline-block;
     margin: 0 1px;
 		border: none;
@@ -85,7 +85,10 @@ header {
     }
 
     &.degree-unit {
-      width: 30px;
+      
+      button {
+        width: 30px;
+      }
     }
 
     &.clickable {
