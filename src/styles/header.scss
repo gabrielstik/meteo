@@ -127,7 +127,11 @@ header {
     @media #{$notebook} {
       top: 13px;
     }
-	}
+  }
+  
+  .checkbox {
+    transform: translateY(-13px) translateX(120px);
+  }
 }
 
 .connexion-container {
