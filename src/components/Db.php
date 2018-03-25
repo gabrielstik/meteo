@@ -6,7 +6,7 @@ class Db {
 			$this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
 		}
 		catch (Exception $e) {
-			echo('DB offline');
+			die('La base de donnée n\'est pas connectée. Veuillez contacter l\'administrateur.');
 		}
   }
   function getHashedPassword($user) {

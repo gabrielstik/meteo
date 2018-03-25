@@ -40,7 +40,7 @@ section.meteo {
 
 	.current {
     width: calc(50% - 50px);
-    height: 250px;
+    min-height: 250px;
     background: var(--white);
 
     @media #{$notebook} {
@@ -130,7 +130,7 @@ section.meteo {
   
   .week-forecast {
     width: calc(50% - 50px);
-    height: 250px;
+    min-height: 250px;
     margin-left: 20px;
 
     @media #{$notebook} {
