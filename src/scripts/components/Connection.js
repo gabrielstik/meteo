@@ -1,17 +1,25 @@
 export default class Connection {
   constructor() {
+    this.$form = document.querySelector('.connexion-container')
     const $button = document.querySelector('.js-show-form')
-    const $form = document.querySelector('.connexion-container ')
     const $quit = document.querySelector('form .quit')
 
     $button.addEventListener('mousedown', () => {
-      $form.classList.add('active')
+      this.activate()
     })
     $quit.addEventListener('mousedown', () => {
-      $form.classList.remove('active')
+      this.desactivate()
     })
     window.addEventListener('keydown', (event) => {
-      if (event.keyCode == 27) $form.classList.remove('active')
+      if (event.keyCode == 27) this.desactivate()
     })
+  }
+
+  activate() {
+    this.$form.classList.add('active')
+  }
+
+  desactivate() {
+    this.$form.classList.remove('active')
   }
 }

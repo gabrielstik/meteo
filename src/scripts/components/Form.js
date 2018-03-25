@@ -1,5 +1,4 @@
 export default class Form {
-
   constructor() {
     const $input = document.querySelector('.input-place .place')
     $input.addEventListener('keydown', (event) => {

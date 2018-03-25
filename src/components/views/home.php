@@ -1,4 +1,8 @@
 <section class="meteo auto-960">
+  <? $Weather = new Weather($place);  
+  if ($Weather->geocoder_data->status == 'ZERO_RESULTS') { ?>
+  <div class="error">Aucune ville ne correspond à votre recherche. Réessayez.</div>
+  <? } else { ?>
   <h1>
     <?= $Weather->place_data->city ?>
     <span class="region">
@@ -14,7 +18,7 @@
       </div>
       <div class="temp">
         <?= round($Weather->weather_data->main->temp) ?>
-        <div class="unit">°C</div>
+        <div class="unit"><?= $session->check_unit('temperature') ?></div>
       </div>
       <div class="temp-values">
         <div class="labels">
@@ -29,6 +33,16 @@
           <div class="hum"><?= round($Weather->weather_data->main->humidity) ?>%</div>
           <div class="pres"><?= round($Weather->weather_data->main->pressure) ?> hPa</div>
         </div>
+      </div>
+    </div>
+    <div class="suntimes flex evenly">
+      <div class="sunrise">
+        <i class="fa fa-sun-o"></i>
+        <?= strftime('%H:%M', $Weather->weather_data->sys->sunrise) ?>
+      </div>
+      <div class="sunset">
+        <i class="fa fa-moon-o"></i>
+        <?= strftime('%H:%M', $Weather->weather_data->sys->sunset) ?>
       </div>
     </div>
   </div>
@@ -46,7 +60,7 @@
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?>
             <br>
             <?= round($forecast[$i]->wind->speed * 3.6) ?>
-            <span class="unit">km/h</span>
+            <span class="unit"><?= $session->check_unit('speed') ?></span>
             <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed * 3.6) ?>"><i class="fa fa-location-arrow"></i></div>
           </div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
@@ -57,7 +71,7 @@
   <div class="day-forecast block">
     <h2>Prévisions sur 36 heures</h2>
     <div class="flex evenly">
-      <? for ($i = 0; $i < 12; $i++) { $forecast = $Weather->forecast_data->list ?>
+      <? for ($i = 0; $i < 11; $i++) { $forecast = $Weather->forecast_data->list ?>
         <div class="day">
           <h3>
             <?= substr(strftime('%A', $forecast[$i]->dt), 0, 3).' '.strftime('%d', $forecast[$i]->dt) ?>
@@ -71,7 +85,7 @@
           <div class="wind">
             <?= $Weather->deg_to_str($forecast[$i]->wind->deg) ?><br>
             <?= round($forecast[$i]->wind->speed * 3.6) ?>
-            <span class="unit">km/h</span>
+            <span class="unit"><?= $session->check_unit('speed') ?></span>
             <div class="wind-arrow" data-orientation="<?= round($forecast[$i]->wind->deg) ?>" data-speed="<?= round($forecast[$i]->wind->speed * 3.6) ?>"><i class="fa fa-location-arrow"></i></div>
           </div>
           <div class="value"><?= round($forecast[$i]->main->humidity) ?>%</div>
@@ -79,4 +93,5 @@
       <? } ?>
     </div>
   </div>
+  <? } ?>
 </section>
