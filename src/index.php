@@ -9,6 +9,9 @@ require './components/Weather.php';
 include './components/Session.php';
 $session = new Session();
 if (isset($_POST['mail']) && isset($_POST['password'])) {
+  if (isset($_POST['create'])) {
+    $session->createAccount($_POST['mail'], $_POST['password']);
+  }
   $session->verify($_POST['mail'], $_POST['password']);
 }
 

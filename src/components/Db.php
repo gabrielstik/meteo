@@ -14,6 +14,11 @@ class Db {
     $user = $query->fetch();
     return !empty($user->password) ? $user->password : false;
   }
+  function createAccount($user, $password) {
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $exec = $this->pdo->prepare("INSERT INTO users (username, password) VALUES ('$user', '$password')");
+    $exec->execute();
+  }
   function getFavoris($user) {
     $query = $this->pdo->query("SELECT * FROM favoris WHERE username = '$user'");
     $favoris = $query->fetchAll();

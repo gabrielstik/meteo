@@ -36,8 +36,8 @@
           <form class="block connexion" action="/<?= $place ?>" method="post">
             <div class="title">Se connecter</div>
             <div class="item">
-              <label for="mail">Mail</label>
-              <input class="grey" type="text" name="mail" id="mail" placeholder="bruno.simon@hetic.net" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>">
+              <label for="mail">Utilisateur</label>
+              <input class="grey" type="text" name="mail" id="mail" placeholder="brunosimon" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>">
               <? if (isset($_GET['error']) && $_GET['error'] == 'notuser') { ?>
                 <div class="error-message">L'utilisateur n'existe pas.</div>
               <? } ?>
@@ -49,6 +49,10 @@
               <? if (isset($_GET['error']) && $_GET['error'] == 'password') { ?>
                 <div class="error-message">Mot de passe incorrect.</div>
               <? } ?>
+            </div>
+            <div class="flex between">
+              <label class="checkbox-label" for="create">Créer un compte</label>
+              <input class="checkbox" type="checkbox" name="create" id="create">
             </div>
             <button type="submit">Se connecter</button>
             <div class="quit">

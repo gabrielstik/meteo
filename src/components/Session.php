@@ -30,6 +30,10 @@ class Session {
       header('Location: /'.$_GET['q'].'?error=notuser');
     }
   }
+  function createAccount($user, $password) {
+    $db = new Db();
+    $db->createAccount($user, $password);
+  }
   function check_unit($unit) {
     if ($unit == 'temperature') {
       if (isset($_SESSION['unit'])) {
