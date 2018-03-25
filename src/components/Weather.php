@@ -1,27 +1,41 @@
 <?
 class Weather {
   function __construct($place) {
-    define('OPEN_WEATHER_API_KEY', '08da33fe0bd44b99b35ef3eabc42fddd');
-    define('GOOGLE_API_KEY', 'AIzaSyA412LU3h-USYKW_U-_al9fOEeZpsjTiic');
-
     $geocoder_url = 'https://maps.googleapis.com/maps/api/geocode/json?key='.GOOGLE_API_KEY.'&language=fr&address='.str_replace(' ', '+', $place);
     $this->geocoder_data = $this->get_data($geocoder_url);
-    $this->place_data = isset($_GET['place']) ? $this->geocode($_GET['place']) : $this->geocode('Paris');
-    
-    $unit = 'metric';
-    $weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
-    $forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
+    $this->place_data = isset($_GET['q']) ? $this->geocode($_GET['q']) : $this->geocode('Paris');
 
-    $this->weather_data = $this->get_data($weather_url);
-    $this->forecast_data = $this->get_data($forecast_url);
+    $unit = isset($_SESSION['unit']) ? $_SESSION['unit'] : 'metric';
+
+    if ($this->geocoder_data->status != 'ZERO_RESULTS') {
+      $weather_url = 'http://api.openweathermap.org/data/2.5/weather?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
+      $forecast_url = 'http://api.openweathermap.org/data/2.5/forecast?appid='.OPEN_WEATHER_API_KEY.'&lat='.$this->place_data->lat.'&lon='.$this->place_data->lng.'&units='.$unit;
+
+      $this->weather_data = $this->get_data($weather_url);
+      $this->forecast_data = $this->get_data($forecast_url);
+    }
   }
 
-  function geocode() {
+  function geocode($place) {
     $this->place_data = new stdClass();
     if (!empty($this->geocoder_data->results[0])) {
-      $this->place_data->city =  $this->geocoder_data->results[0]->address_components[0]->long_name;
-      $this->place_data->region = !empty($this->geocoder_data->results[0]->address_components[2]->long_name ) ?$this->geocoder_data->results[0]->address_components[2]->long_name : '';
-      $this->place_data->country = !empty($this->geocoder_data->results[0]->address_components[3]->long_name) ?$this->geocoder_data->results[0]->address_components[3]->long_name : '';
+      foreach ($this->geocoder_data->results[0]->address_components as $adress_component) {
+        switch ($adress_component->types[0]) {
+          case 'locality':
+          $this->place_data->city = $adress_component->long_name;
+          break;
+          case 'administrative_area_level_1':
+          $this->place_data->region = $adress_component->long_name;
+          break;
+          case 'country':
+          $this->place_data->country = $adress_component->long_name;
+          break;
+          default:
+        }
+      }
+      if (empty($this->place_data->city)) $this->place_data->city = $place;
+      if (empty($this->place_data->region)) $this->place_data->region = '';
+      if (empty($this->place_data->country)) $this->place_data->country = '';
       $this->place_data->lat = $this->geocoder_data->results[0]->geometry->location->lat;
       $this->place_data->lng = $this->geocoder_data->results[0]->geometry->location->lng;
       return $this->place_data;

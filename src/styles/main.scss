@@ -7,12 +7,17 @@ html, body {
 }
 
 .auto-960 {
-  width: 960px;
-	margin: auto;
+  width: 70%;
+  margin: auto;
+  
+  @media #{$notebook} {
+    width: calc(100% - 20px);
+  }
 }
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
 
   &.evenly {
     justify-content: space-evenly;
@@ -39,4 +44,9 @@ h3 {
   text-transform: uppercase;
   text-align: center;
   color: var(--dark);
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
 }

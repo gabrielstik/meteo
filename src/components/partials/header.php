@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="assets/css/reset.min.css">
+  <link rel="stylesheet" href="assets/css/vendor/reset.min.css">
 	<link rel="stylesheet" href="assets/css/style.min.css">
 	<link rel="stylesheet" href="assets/lib/font-awesome-4.7.0/css/font-awesome.min.css">
 	<title>Météo</title>
@@ -33,16 +33,25 @@
           </button>
         <?  } ?>
         <div class="connexion-container">
-          <form class="block connexion" action="/<?= $place ?>" method="get">
+          <form class="block connexion" action="/<?= $place ?>" method="post">
             <div class="title">Se connecter</div>
             <div class="item">
-              <label for="mail">Mail</label>
-              <input class="grey" type="text" name="mail" id="mail" placeholder="bruno.simon@hetic.net">
+              <label for="mail">Utilisateur</label>
+              <input class="grey" type="text" name="mail" id="mail" placeholder="brunosimon" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>">
+              <? if (isset($_GET['error']) && $_GET['error'] == 'notuser') { ?>
+                <div class="error-message">L'utilisateur n'existe pas.</div>
+              <? } ?>
             </div>
             <div class="item">
               <label for="password">Mot de passe</label>
               <input class="grey" type="password" name="password" id="password" placeholder="••••••">
-              <div class="hint">Mot de passe oublié ?</div>
+              <? if (isset($_GET['error']) && $_GET['error'] == 'password') { ?>
+                <div class="error-message">Mot de passe incorrect.</div>
+              <? } ?>
+            </div>
+            <div class="flex between">
+              <label class="checkbox-label" for="create">Créer un compte</label>
+              <input class="checkbox" type="checkbox" name="create" id="create">
             </div>
             <button type="submit">Se connecter</button>
             <div class="quit">
@@ -51,9 +60,10 @@
             </div>
           </form>
         </div>
-        <button class="degree-unit clickable blue">
-          <a>°C</a>
-        </button>
+        <form class="degree-unit" action="/<?= $place ?>" method="post">
+          <input type="hidden" name="unit" value="<?= (isset($_SESSION['unit']) && $_SESSION['unit'] == 'imperial') ? 'metric' : 'imperial' ?>">
+          <button type="submit" class="clickable blue"><?= $session->check_unit('temperature') == '°C' ? '°C' : '°F' ?></button>
+        </form>
       </div>
     </div>
   </div>
