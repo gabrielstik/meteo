@@ -31,7 +31,7 @@ gulp prod
 
 
 
-Now you can run  the app.
+Now you can run the app.
 
 
 
